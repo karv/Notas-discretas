@@ -355,10 +355,52 @@ Discutiremos ahora, de manera análoga a las leyes de equivalencia, un conjunto 
 \section{Cuantificadores}
 Este lenguaje que hemos desarrollado es sin duda una gran ayuda para desarrollar matemáticas, pero nos va a quedar corta.
 Considere por ejemplo el teorema de pitágoras en su forma trigonométrica: \[cos^2 x + \sin^2 x = 1.\]
-Bajo la lógica que hemos desarrollado hasta este momento, tendríamos que hacer una lista infinita de igualdades, una para cada valor de $x$ en la ecuación anterior, lo cual es absurdo.
-Construyamos entonces una extensión al lenguaje.
+Bajo la lógica que hemos desarrollado hasta este momento, tendríamos que hacer una lista infinita de igualdades, una para cada valor de $x$ en la ecuación anterior, lo cual es nos causaría muchos problemas;
+en lugar de ello, introducimos un par de símbolos nuevos al lenguaje: \emph{cuantificadores}.
 
 \begin{df}
-	Un enunciado abierto es % TODO
+	Un \emph{enunciado abierto} es una expresión declarativa con términos no declarados (variables libres) de tal manera que al sustituirlos por objetos de algún tipo específico se convierten en oraciones.
 \end{df}
+Más adelante daremos una definición más satisfactoria, por ahora quedémonos con una correcta intuición.
+\begin{ejm}
+	La expresión $p(x) = cos^2 x + \sin^2 x = 1$ es un enunciado abierto cuya única variable libre es $x$.
+	Si se sustituye $x$ por cualquier objeto (número en este contexto) se convierte en una oración, algo así como \[p(\pi) = \cos^2(\pi) + \sin^2(\pi) = 1\]
+	que uno se puede convencer que es un enunciado, que es verdadero.
+	
+	Nótese que el enunciado abierto $p(x)$ no tiene asignado un valor de verdad ya que no es un enunciado: la oración \[\cos^2 x + \sin^2 x = 1\]
+	carece de significado.
+\end{ejm}
+\begin{ejm}
+	Si $p$ es un enunciado, se sigue de la definición que $p$ también es un enunciado abierto, ya que no hay variables libres las cuales sustituir.
+	
+	A lo largo de estas notas vamos referirnos como enunciados abiertos a los enunciados propiamente abiertos, o sea aquellos enunciados que ciertamente tienen variables libres; al menos que se haga explícito lo contrario.
+\end{ejm}
+% TODO: ejemplos fuera de matemáticas, y de evaluar proyecciones de abiertos.
+Nos serán de utilidad los enunciados con exactamente una variable libre.
+\begin{df}
+	Un \emph{predicado} es un enunciado abierto con exactamente una variable libre. 
+\end{df}
+De nuevo consideramos el predicado $p(x) = \cos^2 x + \sin^2 x = 1$, en un curso de trigonometría se nos enseñan que esa igualdad es cierta para cualquier número $x$; o sea se nos enseña que
+\[q = \cos^2 x + \sin^2 x = 1\quad \text{para cualquier } x \]
+Introducimos un símbolo ``$\forall$" que se interprete justamente así: ``para cualquier", así que la definición de $q$ de arriba quedaría
+\[q = \cos^2 x + \sin^2 x = 1\quad \forall x\]
+y un último retoque: vamos a hacer que se ``declare la variable" antes de usarla, y nos quedaría así:
+\begin{equation}
+	\forall x\, \cos^2 x + \sin^2 x = 1;
+\end{equation}
+así es como sí tiene sentido la ecuación, y así es lo que los libros de trigonometría nos quieren decir.
+
+\begin{df}
+	Si $p(x)$ es un predicado, nos construimos el enunciado \[\forall x\, p(x)\] interpretado como verdadero si para toda $x$ se satisface $p(x)$; falso en otro caso.
+\end{df}
+
+El enunciado $\forall x\, p(x)$ se suele leer como ``para toda $x$, $p(x)$", aunque por supuesto dependiendo del contexto uno suele cambiar las palabras para que suene más alineado al español.
+
+% TODO: repensar cómo escribir esto
+Consideremos la ecuación cuadrática 
+\[x^2 -4x + 3 = 0.\] % (x-1)(x-3)
+Es muy probable que el lector le esté buscando soluciones; ciertamente, si uno sustituye el valor de $x$ por el número 1 la igualdad se satisface.
+Uno puede expresar lo que acaba de ocurrir con nuestro lenguaje: si consideramos el predicado $p(x) \equiv x^2 -4x + 3 = 0$\footnote{No podemos usar aquí el símbolo de igualdad para definir a $p(x)$ porque se puede confundir como parte de una ecuación, así que nos conviene en este caso usar una triple horizontal $\equiv$ para distinguirlo de la igualdad $=$.} podremos darnos cuenta que $p(1)$ es verdadero por la sustitución que hicimos anteriormente.
+% TODO: comprar con otro ejemplo sin soluciones (tal vez debería hacer este ejemplo primero, como ejemplo de un universal)
+
 \end{document}
