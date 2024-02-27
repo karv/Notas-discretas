@@ -7,7 +7,7 @@
 \usepackage{multicol}
 \usepackage{tikz}
 \usepackage{tasks}
-\usepackage{wrapfig}  % Spaces around a figure (sate to remove)
+\usepackage{wrapfig}  % Spaces around a figure (safe to remove)
 \usepackage[spanish]{babel}
 % \usepackage[margin=15mm]{geometry}
 \usepackage{hyperref}	% References with links
@@ -22,15 +22,17 @@
 \newcommand*{\image}[1]{#1^{\rightarrow}}
 \newcommand*{\concat}{\frown}
 
-\newtheorem{df}{Definición}[chapter]
 \newtheorem{thm}{Teorema}[chapter]
-\newtheorem*{ejm}{Ejemplo}
 \newtheorem{ejr}{Ejercicio}[chapter]
 \newtheorem*{sol}{Solución}
 %\newtheorem{demo}{Demostración}
-
+	
 \def\proof{\paragraph{Demostración:\\}}
 \def\endproof{\hfill$\blacksquare$}
+
+\theoremstyle{definition}
+\newtheorem{df}{Definición}[chapter]
+\newtheorem*{ejm}{Ejemplo}
 
 %\newenvironment{sol}{\noindent{\it Solución.}}{\hfill$\blacksquare$}
 \begin{document}
@@ -400,7 +402,90 @@ El enunciado $\forall x\, p(x)$ se suele leer como ``para toda $x$, $p(x)$", aun
 Consideremos la ecuación cuadrática 
 \[x^2 -4x + 3 = 0.\] % (x-1)(x-3)
 Es muy probable que el lector le esté buscando soluciones; ciertamente, si uno sustituye el valor de $x$ por el número 1 la igualdad se satisface.
-Uno puede expresar lo que acaba de ocurrir con nuestro lenguaje: si consideramos el predicado $p(x) \equiv x^2 -4x + 3 = 0$\footnote{No podemos usar aquí el símbolo de igualdad para definir a $p(x)$ porque se puede confundir como parte de una ecuación, así que nos conviene en este caso usar una triple horizontal $\equiv$ para distinguirlo de la igualdad $=$.} podremos darnos cuenta que $p(1)$ es verdadero por la sustitución que hicimos anteriormente.
+Uno puede expresar lo que acaba de ocurrir con nuestro lenguaje: si consideramos el predicado $p(x) \equiv\footnote{No podemos usar aquí el símbolo de igualdad para definir a $p(x)$ porque se puede confundir como parte de una ecuación, así que nos conviene en este caso usar una triple horizontal $\equiv$ para distinguirlo de la igualdad $=$.} x^2 -4x + 3 = 0$ podremos darnos cuenta que $p(1)$ es verdadero por la sustitución que hicimos anteriormente.
 % TODO: comprar con otro ejemplo sin soluciones (tal vez debería hacer este ejemplo primero, como ejemplo de un universal)
+
+Ahora, por supuesto que una oración puede tener más de un cuantificador, expresiones como $\exists x \exists y\, x^2 = y + 1$ tienen sentido en la lógica, ésta en particular es verdadera porque $1^2 = 0 + 1$ (tomando $x=1$ y $y=0$). Exploremos algunos ejemplos.
+
+\begin{ejm}
+	Considere el enunciado abierto $p(x,y)=x^2=y$.
+	
+	Dejando a $x$ correr libre, y cuantificando $y$ con una existencial tenemos el enunciado abierto $\exists y\, x^2=y$, que para cada $x=x_0$ particular se convierte en $\exists y\, x_0^2=y$ que se podría decir en lenguaje coloquial ``$x_0$ tiene un cuadrado" (¿Puede el lector explicar por qué?) el cual es verdadero para cualquier $y$.
+	Hemos, por lo tanto, concluido que $\forall x \exists y \, x^2=y$.
+
+	Por otro lado, si consideramos el enunciado abierto $\forall y\, x^2=y$ en el que si fijamos $x=x_0$ se convierte en la oración $\forall y\, x_0^2=y$; esto es, el cuadrado de este $x_0$ es igual a cualquier número. ¡ABSURDO! ¡No puede ser que un número sea igual a cualquier otro, esto implicaría que no hay más de un número! ciertamente la oración es falsa sin importar el valor de $x_0$ y concluimos que $\forall x \exists y\, x^2=y$ tiene un valor de verdad falso.
+\end{ejm}
+% TODO: dejaré este capítulo por ahora
+
+\chapter{Teoría ingenua de conjuntos}
+Durante el capítulo anterior desarrollamos herramientas lógicas \emph{de bajo nivel} que nos ayudarán en construir de manera precisa y robusta las matemáticas que nos conciernen en el resto de este trabajo, sin mencionar el alto grado de fundamentación que serán reutilizados fuera del ámbito de estas notas.
+
+En este capítulo se construirá un lenguaje de teoría de conjuntos
+\footnote{El lenguaje de la teoría de conjuntos es un objeto bien definido dentro de la intersección de la lógica y la teoría de conjuntos, pero está fuera de nuestra motivación presentarlo. %TODO referencias
+}
+que es, de alguna forma, un lenguaje de nivel medio, que sirve como mediador entre la lógica y las matemáticas que queremos construir.
+
+El objeto de estudio de este capítulo es el \emph{conjunto}, noción que no vamos a definir por ser bastante primitivo y no queremos meternos con el problema de la cebolla %TODO ¿explicar en una nota?
+pero los objetos quedarán claros al desarrollar contenido alrededor de ellos
+
+\begin{df} % TODO: ¿noción?
+	Un \emph{conjunto} es una colección desordenada de objetos que no distingue repetición.
+\end{df}
+
+El hábil lector pudo darse cuenta de que estamos definiendo 
+conjunto en términos de sí mismo (o algo equivalente: colección.) Esto ciertamente causa malestar; este problema se puede arreglar axiomatizando las reglas de la teoría de conjuntos, pero el autor cree que no se deba proceder así en un trabajo como el presente.   % TODO: referencia a algún libro de teoría de conjuntos
+% TODO: agregar contexto histórico 
+
+El único propósito de un conjunto es deliminar de una manera clara y concisa cuáles con los elementos que pertenecen a él; y de igual manera, lo único que un conjunto \emph{sabe}, es cuáles son sus elementos.
+Exploremos el siguiente ejemplo, para explicar a qué me refiero y simultáneamente para introducir notación.
+
+Considere el conjunto $A$ de todos los continentes del planeta\footnote{Usando el modelo de los 6 continentes.}, es claro que, sin la mínima ambigüedad, América ($x$) y África ($y$) son miembros de este conjunto; sin embargo México ($z$) no lo es.
+Esto se puede escribir simbólicamente como $x \in A, y\in A, z \notin A$, o bien, $x,y\in A, z\notin A$. 
+Los símbolos $\in$ y $\notin$ se leen ``pertenece" y ``no pertenece" respectivamente.
+
+Mencionamos que lo único que conoce $A$ es cuáles son sus elementos, con esto nos referimos a que el conjunto $A$ carece de cualquier estructura interna. $A$ no sabe nada acerca de esos continentes, de hecho no sabe qué es un continente. $A$ no sabe cuál es el primero, segundo, o tercer continente y tampoco sabe si los objetos América y África sea la misma cosa o no, y no le interesa.
+
+Lo único que sabe un conjunto es si un objeto es o no un elemento de él.
+
+Hay dos formas\footnote{En realidad sólo basta con predicados, la exhaustiva es una consecuencia de ésta, pero es mejor separarlas para facilitar la comprensión} de describir un conjunto:
+\begin{description}
+	\item[Exhaustiva] Se exponen explícitamente los elementos de tal conjunto.
+	
+	En el ejemplo de los continentes, podríamos haber escrito \[A = \set{\text{América}, \text{Europa}, \text{Asia}, \text{África}, \text{Oceanía}, \text{Antártida}}\]
+	
+	Esto nos deja sin ambigüedad: un objeto es elemento de un conjunto si aparece en la lista; y no es elemento si no aparece.
+	Cabe notar que, cuando escribimos los elementos de un conjunto, no le estamos imbuyendo el orden en el conjunto: el conjunto que estamos definiendo no alcanza a ver cómo lo definimos.
+	
+	\item[Predicado] Como lo mencionamos varias veces: lo único que sabe un conjunto es cuáles son sus elementos, si tenemos una máquina que me diga si un objeto cumple alguna propiedad o no, podemos agrupar a todos aquellos que cumplen tal propiedad; ¡Pero por supuesto que tenemos esta máquina! ¡Se llaman predicados!
+	
+	Si tenemos un predicado $p$, le podemos asociar el conjunto $A$ de todos los objetos $x$ que cumplen la propiedad $p$. 
+	\[x\in A \iff p(x);\]
+	esto es, A es el conjunto de todos los objetos que cumplen con un predicado $p$, y se suele escribir así: $A$ es el conjunto de todos los $x$ tal que $p(x)$; o con símbolos:
+	\[A = \set{x : p(x)}\]
+	
+	En el ejemplo de los continentes, así fue justamente como lo definimos. Explícitamente declaramos que $A$ es el conjunto de los continentes. Con símbolos podríamos haber escrito
+	\[A = \set{x : x\text{ es un continente}}\]
+\end{description}
+
+\begin{ejm}	\begin{itemize}
+	\item Uno puede definir $A$ de manera exhaustiva como $A=\set{0,1,2,3}$; incluso, se suele hacer un poco de trampa y definir conjuntos de manera exhaustiva estableciendo un patrón:
+	\[\mathbb{N} = \set{0,1,2,3,\ldots}\]
+	$\mathbb{N}$ es el conjunto de todos los números naturales, o números enteros no negativos.
+	
+	Obsérvese que el conjunto $A$ se puede escribir como el conjunto de todos los números naturales no mayores que 3.
+	\[A = \set{x : x \in \mathbb{N} \wedge x \leq 3},\]
+	
+	\item Considere el conjunto $A=\set{x : 0\leq x < 5}$, todos los objetos entre 0 y 5, inclusive-exclusive. El conjunto $A$ está escrito de una manera ambigua o indefinida, según cómo lo piense el lector: estamos definiendo a $A$ en términos de un símbolo de comparación $\leq$ o $<$, pero no tenemos forma, o no hemos definido este objeto en tan generalidad. Probablemente sea necesario delimitar el universo para que esto tenga sentido. 
+	Si pensamos únicamente en números naturales (y así $\leq$ es el orden usual en ellos) obtenemos el conjunto
+	\[B = \set{x \in \mathbb{N}: 0\leq x < 5}\]
+	cuyos elementos son únicamente 0,1,2,3 y 4; o sea, $B = \set{0,1,2,3,4}$.
+	
+	Si por otro lado, delimitamos a todos los números reales
+	\[C = \set{x \in \mathbb{R}: 0\leq x < 5}\]
+	obtenemos un conjunto infinito, que entre sus filas se encuentran el 0, 0.5, 2.11, $\pi$, $e$, $\sqrt{3}$, etc.
+	Claramente $B \neq C$.
+	
+	\item % El ejemplo donde aparce la existencial
+\end{itemize}\end{ejm}
 
 \end{document}
