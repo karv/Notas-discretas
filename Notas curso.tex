@@ -9,7 +9,7 @@
 \usepackage{tasks}
 \usepackage{wrapfig}  % Spaces around a figure (safe to remove)
 \usepackage[spanish]{babel}
-% \usepackage[margin=15mm]{geometry}
+\usepackage[margin=22mm]{geometry}
 \usepackage{hyperref}	% References with links
 
 \usetikzlibrary{shapes.geometric,fit}
@@ -37,20 +37,20 @@
 %\newenvironment{sol}{\noindent{\it Solución.}}{\hfill$\blacksquare$}
 \begin{document}
 \chapter{Lógica matemática}
+% TODO: hablar de lógica, lógica de enunciados de primer orden
+Empezamos definiendo el objeto de estudio de este capítulo.
 \begin{df}
-	Empezamos definiendo el objeto de estudio de este capítulo.
-	Una \emph{oración}
+	Un \emph{enunciado}
 		\footnote{Más adelante daremos una definición formal de ésta} %TODO 
-		es una expresión declarativa cuyo valor de verdad está determinado.
+		(a veces llamado oración) es una expresión declarativa cuyo valor de verdad está determinado.
 \end{df}
 
-% TODO: hablar de lógica, lógica de enunciados (sin cuantis)}
 % TODO: cambiar oración por enunciado
 \section{Lógica de oraciones}
 Por ejemplo, expresiones del tipo ``Si mañana llueve, voy a faltar a clase" o ``María sabe inglés y francés" son oraciones; también, más al contexto de las matemáticas ``$2+2=4$" o bien ``$3^2 > 20$" también lo son.
 Expresiones como ``¿Qué hora es?", ``¡Qué calor!" o ``Haz tu tarea" no son oraciones, ya que no son expresiones declarativas.
 
-Aquí estamos usando comillas dobles para separar el contenido (lo que este libro dice) al objeto (lo que el objeto dice), y lo seguiremos usando cuando pueda haber ambigüedad.
+Aquí estamos usando comillas dobles para separar el contenido (lo que este trabajo dice) del objeto (lo que el objeto dice), y lo seguiremos usando cuando pueda haber ambigüedad.
 
 \section{Operadores lógicos}
 
@@ -62,28 +62,60 @@ Como en todas las matemáticas, el contenido emerge cuando miramos a cómo inter
 	que a cada oración, o pareja de ellos, les asigna alguna otra.
 \end{df}
 
-Con el fin de construir operadores lógicos, haremos uso de \emph{tablas de verdad}, es decir, una tabla en la que se analice el comportamiento de una oración en todos los posibles casos. En la tabla \ref{tb_tablaVerdadOperadores} se pueden ver las tablas de verdad de los operadores que vamos a definir a continuación.
+Con el fin de construir operadores lógicos, haremos uso de \emph{tablas de verdad}, es decir, una tabla en la que se analice el comportamiento de una oración en todos los posibles casos que puedan ocurrir, dada una cantidad de enunciados simples. En la tabla \ref{tb_tablaVerdadOperadores} se pueden ver las tablas de verdad de los operadores que vamos a definir a continuación.
 
 Procedemos a hacer una lista de los operadores que nos interesan.
-% todo referencia a la tabla (tabla que haré con los operadores)
 \begin{description}
-	\item [Negación]
+	\item [Negación ($\neg$)]  % TODO: ¿No se ve horrible agregar aquí los símbolos de los operadores?
 	Si $p$ es una oración, su negación $\neg p$ (no $p$) alterna el valor de verdad de $p$; esto es, $\neg p$ es falsa sólo cuando $p$ es verdadera.
 	
 	Por ejemplo, si $p$ representa ``$2+2=5$", $\neg p$ es la oración que afirma ``no es cierto que $2+2=2$", o bien ``$2+2\neq 5$".
 
-	\item[Conjunción] El operador binario conjunción $\wedge$ asigna a cada par de oraciones $p,q$ una nueva oración $p \wedge q$ ($p$ y $q$) que es verdadera exactamente cuando los dos operandos también lo son.
+	\item[Conjunción ($\wedge$)] El operador binario $\wedge$ asigna a cada par de oraciones $p,q$ una nueva oración $p \wedge q$ ($p$ y $q$) que es verdadera exactamente cuando los dos operandos también lo son.
 
 	Por ejemplo, haciendo que $p$ se interprete como ``Los cerdos vuelan" y $q$ como ``Los gatos nadan", entonces el símbolo $p\wedge q$ debe interpretarse como ``Los cerdos vuelan y los gatos caminan", cosa que es falso.
 	
-	\item[Disyunción] Este operador binario $\vee$ compone dos oraciones $p,q$ en $p\vee q$($p$ o $q$) que requiere que al menos uno de ambos sea verdadero para ser, en conjunto, verdadero; equivalentemente, la única forma en la que $p \vee q$ sea falso es que tanto $p$ como $q$ sea falso.
+	\item[Disyunción ($\vee$)] Este operador binario $\vee$ compone dos oraciones $p,q$ en $p\vee q$($p$ o $q$) que requiere que al menos uno de ambos sea verdadero para ser, en conjunto, verdadero; equivalentemente, la única forma en la que $p \vee q$ sea falso es que tanto $p$ como $q$ sea falso.
 	
 	Tomando el mismo ejemplo del cerdo y el gato, $p\vee q$ se interpreta como ``los cerdos vuelan o los gatos caminan". Como los gatos caminan, entonces $p \vee q$ es verdadero.
-% TODO el resto de los operadores lógicos
+	
+	\item[Disyunción excluyente ($\veebar$)] A veces se requiere, a diferencia de la disyunción, que exactamente uno de los operandos sea verdadero, y \emph{excluir} el caso en el que ambos sean verdaderos. Aquí entra la disyunción excluyente, que su valor de verdad es verdadero exactamente cuando uno de los dos operandos es verdadero.
+	Se puede pensar en este operador como una prueba de diferencia: devuelve verdadero cuando los valores de la entrada son diferentes entre sí.
+	
+	Aunque este operador no parezca tan natural como los anteriores, es bastante usado por razones técnicas, ya que su álgebra es bastante bien comportada. % TODO: Algúna referencia a la parte de conjuntos donde se trata esto.
+	
+	\item[Condicional ($\rightarrow$)] Este operador juega un papel muy importante en la construcción de conocimiento nuevo, ¡en inferencia, vaya! y por ello tendrá un papel estelar en la sección \ref{sc_inferenciasLogicas}.
+	
+	Este operador intenta modelar situaciones donde exista una pareja premisa-conclusión. Consideramos un par de ejemplos
+	
+	Consideremos un símbolo de enunciado $p$ que tenga interpretación ``Estudio el fin de semana" y $q$ interpretando a ``Apruebo el curso de matemáticas discretas".
+	Queremos darle un valor de verdad al término $p \rightarrow q$ de tal manera que se interprete como $p\rightarrow q \equiv$ ``Si $p$ entonces $q$" $\equiv$ ``Si estudio el fin de semana, entonces apruebo el curso de matemáticas discretas".
+	
+	Consideremos todas las cuatro combinaciones de los posibles valores de verdad para la pareja de $p$ y $q$.
+	Por ejemplo, si $p,q$ son ambos verdaderos entonces $p\rightarrow q$ debería ser verdadera, porque al final estudié y terminé pasando el curso.
+	
+	¿Qué pasaría si $p$ fuera falsa?
+	Imaginemos que el profesor del curso le dice a Panchito: ``si estudias, seguramente pasas este curso" y Panchito decide hacer caso omiso y este fin de semana decidió no abrir su cuaderno del curso. Como era de esperarse, reprobó.
+	¿El profesor dijo mentiras? ¡Por supuesto que no! ¡Si $p$ es falso y $q$ también es falso, entonces $p\rightarrow q$ es verdadera! (vea la tabla \ref{tb_tablaVerdadOperadores}.)
+	Es exactamente el mismo caso para cuando $p$ es falso y $q$ verdadero.
+	En definitiva: si no se cumple la premisa de un enunciado $p\rightarrow q$, entonces el valor de verdad de $p\rightarrow q$ es verdadero.
+	
+	La única forma en la que este profesor de Panchito pudo haber dicho alguna mentira (o sea, que el valor de verdad de la condicional sea falsa) es que, a pesar de que Panchito estuvo leyendo y haciendo ejercicios todo el fin de semana, hubiera reprobado.
+	Esto es, la única forma de que un enunciado $p\rightarrow q$ sea falsa, es que a pesar de que la condición o premisa $p$ sea verdadera, no se cumpla la conclusión $q$.
+	
+	Toda esta argumentación queda resumida en la tabla \ref{tb_tablaVerdadOperadores}.
+	
+	Cabe mencionar que este operador se puede confundir bastante con la noción de implicación ($\implies$) de la que hablaremos después.
+	
+	\item[Bicondicional ($\leftrightarrow$)] Este operador es el equivalente al símbolo de igualdad en álgebra. Es justamente eso: una comparación de igualdad.
+	
+	Si se tienen dos enunciados $p,q$, vamos a decir que $p\leftrightarrow q$ cuando ambos sean verdaderos, o ambos sean falsos.
+	
+	La elección del símbolo $\leftrightarrow$ es que, como después lo vamos a probar, los enunciados $p\leftrightarrow q$ y $(p \rightarrow q) \wedge (q \rightarrow p)$ se comportan lógicamente idénticos.
 \end{description}
 
 De aquí en adelante mantendremos el simbolismo de manera correcta, no debemos asignar interpretaciones, excepto tal vez en ejemplos, las oraciones que aparezcan; de esta manera vamos a obtener generalidad en los resultados, y podremos aislar el razonamiento lógico del semántico.
-Bajo este paradigma, debemos considerar cada oración \emph{atómica} ser, independientemente de otras oraciones atómicas, sus ambos valores de verdad (falso o verdadero.)
+Bajo este paradigma, debemos considerar que cada oración \emph{atómica} puede ser, independientemente de otras oraciones atómicas, sus ambos valores de verdad (falso o verdadero.)
 
 En el párrafo anterior, nos referimos a una oración atómica si no se puede descomponer propiamente en términos de otras oraciones y los operadores lógicos, y diremos que una oración es \emph{compuesta} en caso contrario.
 Por ejemplo, la oración $r = \neg p \veebar q$ es compuesta, mientras que no necesariamente es el caso de $p,q$, que usualmente se se asumen, cuando no explícitamente sean compuestas, como atómicas.
@@ -91,7 +123,7 @@ Por ejemplo, la oración $r = \neg p \veebar q$ es compuesta, mientras que no ne
 Una tabla de verdad de una oración $p$ es una guía que nos permite conocer el comportamiento de oraciones arbitrarias usando fuerza bruta.
 Se analizan todas las combinaciones de los valores de verdad de todas las oraciones atómicas que aparezcan en $p$, usualmente representados en una tabla\footnote{También se suelen representar en diagramas de Venn, pero los evitaremos en este capítulo.}
 \begin{ejm}
-	Encontrar la tabla de verdad de la oración $p \wedge \neg q$. Suponga que tanto $p$ como $q$ son atómicas.
+	Encontrar la tabla de verdad de el enunciado $p \wedge \neg q$. Suponga que tanto $p$ como $q$ son atómicas.
 	Hacemos una tabla que contenga una columna para cada oración atómica, y una columna para expresar la oración $p \wedge \neg q$:
 
 	\begin{center}\begin{tabular}{|c|c|c|}
@@ -128,7 +160,6 @@ Se analizan todas las combinaciones de los valores de verdad de todas las oracio
 
 Para referencias, la tabla de verdad de cada uno de los operadores mencionados aparece a continuación
 \begin{figure}[h]
-\label{tb_tablaVerdadOperadores}
 \begin{center}\begin{tabular}{|c|c||c|c|c|c|c|}
 	\hline 
 	$p$& $q$ & $p \wedge q $ & $p \vee q$  & $p \veebar q $ & $p \rightarrow q$ & $p \leftrightarrow q$  \\
@@ -153,6 +184,7 @@ Para referencias, la tabla de verdad de cada uno de los operadores mencionados a
 \end{tabular}
 \end{center}
 \caption{Tabla de verdad de los operadores lógicos. Arriba los operadores binarios, abajo el único operador unario no trivial.}
+\label{tb_tablaVerdadOperadores}
 \end{figure}
 
 Uno suele referirse como tabla de verdad de una oración $p$ como la tabla completa, o únicamente la columna donde aparece la $p$, el contexto nos dirá a cuál nos referimos.
@@ -173,12 +205,57 @@ Luego, retomando la oración $s=p\rightarrow q \vee r$, con la discusión anteri
 \end{ejm}
 
 \begin{ejm}
-	Ahora uno puede calcular tabla de verdad de expresiones más complicadas. Considere $\psi = p \wedge q\veebar r$, la tabla de verdad que buscamos es %TODO: la tabla
+	Ahora uno puede calcular tabla de verdad de expresiones más complicadas. Considere $\psi = p \wedge q\veebar p$, la tabla de verdad que buscamos es
+	\begin{figure}[h]
+		\begin{center}\begin{tabular}{|c|c||c|c|c|c|c|}
+				\hline 
+				$p$& $q$ & $p \wedge q $ & $(p \wedge q) \veebar p$ \\
+				\hline \hline
+				F & F & F & F \\
+				\hline
+				F & V & F & F \\
+				\hline
+				V & F & F & V \\
+				\hline
+				V & V & V & F \\
+				\hline
+	\end{tabular}\end{center}\end{figure}
 	
-	Note que, a pesar de que $\psi$ contiene a $q\veebar r$ como subcadena, no se debe evaluar esta expresión, o sea no debe aparecer en la tabla de verdad de $\psi$ (no es una sub-oración, ¡vaya!)
+	Note que, a pesar de que $\psi$ contiene a $q\veebar p$ como subcadena, no se debe evaluar esta expresión, o sea no debe aparecer en la tabla de verdad de $\psi$ (no es un sub-enunciado.)
 \end{ejm}
 
-% TODO: algunos ejemplos de tablas de verdad más complicados
+Uno puede notar que la complejidad de una tabla de verdad de un enunciado $\psi$ puede crecer en dos sentidos: por un lado, entre más enunciados atómicos aparezcan, el número de columnas crece y muy rápido
+	\footnote{Como será evidente cuando el lector haya leído el capítulo \ref{ch_combinatoriaEnumerativa}, una tabla tiene $2^n+1$ filas incluyendo la del título, donde $n\geq 0$ es el número de enunciados atómicos que contiene el enunciado.};
+y por otro lado, por cada operación que contenga $\psi$.
+Usar tablas de verdad para analizar el comportamiento de algún enunciado puede ser un suicidio.
+\begin{ejm}
+	Construyamos la tabla de verdad de $\psi = \left(p \wedge q \rightarrow p \vee r \right)\wedge \neg \left(q \rightarrow r\right)$
+	
+	\begin{figure}[h]
+	\begin{center}\begin{tabular}{|c|c|c||c|c|c|c|c|c|}
+			\hline 
+			$p$& $q$ & $r$ & $p \wedge q $ & $p \vee r$ & $p \wedge q  \rightarrow p \vee r $ & $q \rightarrow r$ & $\neg\left(q \rightarrow r\right)$ & $\left(p \wedge q \rightarrow p \vee r \right)\wedge \neg \left(q \rightarrow r\right)$ 
+			\\
+			\hline \hline
+			F & F & F & F & F & V & V & F & F \\
+			\hline
+			F & F & V & F & V & V & V & F & F \\
+			\hline
+			F & V & F & F & F & V & F & V & V \\
+			\hline
+			F & V & V & F & V & V & V & F & F \\
+			\hline
+			V & F & F & F & V & V & V & F & F \\
+			\hline
+			V & F & V & F & V & V & V & F & F \\
+			\hline
+			V & V & F & V & V & V & F & V & V \\
+			\hline
+			V & V & V & V & V & V & V & F & F \\
+			\hline
+\end{tabular}\end{center}\end{figure}
+\end{ejm}
+
 Como se puede ver el álgebra de operadores de una oración arbitraria queda totalmente determinada por su tabla de verdad, dentro de ella hay dos casos extremos que nos dan cierto interés: cuando siempre es falsa y cuando siempre es verdadera. Esto nos motiva a dar la siguiente definición.
 
 \begin{df}
@@ -187,38 +264,86 @@ Como se puede ver el álgebra de operadores de una oración arbitraria queda tot
 \end{df}
 
 \begin{ejm}
-	Construyamos la tabla de verdad de $\psi = (p\rightarrow q)\wedge p \wedge \neq q$.
-	% TODO hacer la tabla
-	como se puede ver, la columna de $\psi$ sólo tiene falsos, por lo que podemos decir que $(p\rightarrow q)\wedge p \wedge \neq q$ es una contradicción.
+	Construyamos la tabla de verdad de $\psi = (p\rightarrow q)\wedge p \wedge \neg q$.
+		\begin{center}\begin{tabular}{|c|c||c|c|c|c|}
+			\hline
+			$p$ & $q$ & $p\rightarrow q$ & $\left(p\rightarrow q\right)\wedge p$ & $\neg q$& $(p\rightarrow q)\wedge p \wedge \neg q$ \\
+			\hline \hline
+			F & F & V & F & V & F \\
+			\hline
+			F & V & V & F & F & F \\
+			\hline
+			V & F & F & F & V & F \\
+			\hline
+			V & V & V & V & F & F \\
+			\hline
+	\end{tabular}.\end{center}
+	La columna de $\psi$ sólo tiene falsos, por lo que podemos decir que $(p\rightarrow q)\wedge p \wedge \neg q$ es una contradicción.
 \end{ejm}
 \begin{ejm}
-	También podemos convencernos que la oración $q \wedge (p \rightarrow q)$ es una tautología, haciendo su tabla de verdad
-	% TODO la tabla
+	Por otro lado, el enunciado $p\wedge q \rightarrow q$ es una tautología, haciendo su tabla de verdad
+	\begin{center}\begin{tabular}{|c|c||c|c|}
+		\hline
+		$p$ & $q$ & $p \wedge q$ & $p\wedge q \rightarrow q$ \\
+		\hline\hline
+		F & F & F & V \\ \hline
+		F & V & F & V \\ \hline
+		V & F & F & V \\ \hline
+		V & V & V & V \\ \hline
+	\end{tabular}\end{center}
 \end{ejm}
 
-Va a ser común que tengamos que hacer referencia a una tautología y a una contradicción como parte de una oración, por lo que nos conviene establecer símbolos para ellos:
+Va a ser común que tengamos que hacer referencia a una tautología y a una contradicción como parte de un enunciado, por lo que nos conviene establecer símbolos para ellos:
 \begin{df}
-	Los símbolos (oraciones) $\top$ y $\bot$ representan oraciones que se interpretan como tautología y contradicción, respectivamente.
+	Los símbolos $\top$ y $\bot$ representan enunciados que se interpretan como tautología y contradicción, respectivamente.
 \end{df}
 Ciertamente, en principio bien podrían existir más de una tautología, o contradicción: $p\vee \neg p$ y $q \wedge (p \rightarrow q)$ son ambas tautologías, por lo que pareciera que los símbolos $\top$ y $\bot$ son ambiguos.
 ¡No hay de qué preocuparse! Cuando definamos, un poco más abajo en la siguiente sección, la igualdad entre oraciones (se llaman equivalencias lógicas) será claro que la tautología y la contradicción son únicas. % TODO: hacer justamente esto
 
-Luego, de ahora en adelante podrán aparecer los símbolos $\bot$ y $\top$ como parte de nuestras oraciones, como sugiere el siguiente ejemplo.
+Luego, de ahora en adelante podrán aparecer los símbolos $\bot$ y $\top$ como parte de nuestros enunciados, como sugiere el siguiente ejemplo.
 
 \begin{ejm}
-	Considere la oración $\psi = \top \vee (q \veebar p)$. Uno puede mostrar que es una tautología haciendo una tabla de verdad como la siguiente %TODO Hacer la tabla
+	Considere la oración $\psi \equiv \top \vee (q \veebar p)$. Uno puede mostrar que es una tautología haciendo una tabla de verdad como la siguiente.
+	\begin{center}\begin{tabular}{|c|c||c|c|}
+		\hline
+		$p$ & $q$ & $q\veebar p$ & $\top \vee q\veebar p$ \\
+		\hline\hline
+		F & F & F & V \\ \hline
+		F & V & V & V \\ \hline
+		V & F & V & V \\ \hline
+		V & V & F & V \\ \hline
+	\end{tabular}\end{center}
 \end{ejm}
 
 \section{Equivalencias lógicas}
-En este momento nos preocupa cuándo dos oraciones representan exactamente lo mismo.
-Consideremos la siguiente situación: hay dos oraciones $\psi =\neg (p \vee q)$ y $\phi = \neg p \wedge \neg q$ que nos gustaría comparar, lo más evidente que podemos hacer es construir la tabla de verdad de cada una de ellas % TODO hacer las tablas
-Vaya, las columnas que corresponden a $\psi$ y a $\phi$ son idénticas; esto implica, que el álgebra de oraciones no es capás de distinguirlas. ¡Deben ser iguales!
-Luego, recordamos que hay un operador cuya función es determinar si dos valores de verdad son iguales o no: el operador bicondicional.
-Si operamos $\psi$ y $\phi$ con este operador, como sus tablas de verdad son idénticas, entonces la tabla de verdad de $\xi = \psi \leftrightarrow \phi$ debe contener únicamente valores verdaderos %TODO hacer la tabla
+En este momento nos preocupa cuándo dos enunciados representan exactamente lo mismo.
+Consideremos la siguiente situación: hay dos oraciones $\psi \equiv \neg (p \vee q)$ y $\phi \equiv \neg p \wedge \neg q$ que nos gustaría comparar, lo más evidente que podemos hacer es construir la tabla de verdad de cada una de ellas
+\begin{center}\begin{tabular}{|c|c||c|c|c|c|c|}
+	\hline
+	$p$ & $q$ & $p\vee q$ & $\psi \equiv \neg (p \vee q)$ & $\neg p$ & $\neg q$ & $\psi \equiv \neg p \wedge \neg q$ \\
+	\hline\hline
+	F & F & F & V & V & V & V \\ \hline
+	F & V & V & F & V & F & F \\ \hline
+	V & F & V & F & F & V & F \\ \hline
+	V & V & V & F & F & F & F \\ \hline
+\end{tabular}\end{center}
+¡Vaya!, las columnas que corresponden a $\psi$ y a $\phi$ son idénticas; esto implica, que el álgebra de enunciados no es capaz de discernirlas. ¡Debemos considerarlas iguales!
+
+En aras de \emph{definir} esta igualdad,  recordamos que hay un operador cuya función es determinar si dos valores de verdad son iguales o no: el operador bicondicional $\leftrightarrow$.
+Si operamos $\psi$ y $\phi$ con este operador, como sus tablas de verdad son idénticas, entonces la tabla de verdad de $\xi \equiv \psi \leftrightarrow \phi$ debe contener únicamente valores verdaderos %TODO hacer la tabla
+\begin{center}\begin{tabular}{|c|c||c|c|c|c|c|c|}
+		\hline
+		$p$ & $q$ & $p\vee q$ & $\psi \equiv \neg (p \vee q)$ & $\neg p$ & $\neg q$ & $\psi \equiv \neg p \wedge \neg q$ & $\xi \equiv \psi \leftrightarrow \phi$ \\
+		\hline\hline
+		F & F & F & V & V & V & V & V \\ \hline
+		F & V & V & F & V & F & F & V \\ \hline
+		V & F & V & F & F & V & F & V \\ \hline
+		V & V & V & F & F & F & F & V \\ \hline
+\end{tabular}\end{center}
 
 Ciertamente: $\xi$ es una tautología. Esto nos da una motivación para considerar la siguiente noción de igualdad entre oraciones.
 \begin{df}\label{df_equivalenciaLogica}
-	Si $\psi$ y $\phi$ son oraciones, diremos que son \emph{equivalentes}, denotado por $\psi \iff \phi$ cuando la oración $\psi \leftrightarrow \phi$ sea una tautología.
+	Si $\psi$ y $\phi$ son enunciados, diremos que son \emph{equivalentes}, denotado por $\psi \iff \phi$ cuando el enunciado $\psi \leftrightarrow \phi$ sea una tautología.
 \end{df}
 
 \begin{ejm}
@@ -234,11 +359,10 @@ La tabla \ref{tb_EquivalenciasLogicas} contiene una lista de las equivalencias l
 Queremos, de alguna manera, ser capaces de convencernos y demostrar equivalencias sin necesidad de hacer la tabla, para ello vamos a estar invocando estas equivalencias y usándolas como piezas para equivalencias más complejas.
 
 \begin{figure}[h]
-\label{tb_EquivalenciasLogicas}
 \begin{align*}
 	\neg \neg p &\iff p & \text{Doble negación}\\
-	\neg(p \wedge q) &\iff \neg p \vee \neg q & \text{DeMorgan}\\
-	\neg(p \vee q) &\iff \neg p \wedge \neg q & \text{DeMorgan}\\
+	\neg(p \wedge q) &\iff \neg p \vee \neg q & \text{De Morgan}\\
+	\neg(p \vee q) &\iff \neg p \wedge \neg q & \text{De Morgan}\\
 	p \vee q &\iff q \vee p & \text{Conmutatividad} \\
 	p \wedge q & \iff q \wedge p & \text{Conmutatividad}\\
 	p \vee (q \vee r) &\iff (p \vee q) \vee r & \text{Asociatividad}\\
@@ -260,6 +384,7 @@ Queremos, de alguna manera, ser capaces de convencernos y demostrar equivalencia
 	p \rightarrow q &\iff \neg q \rightarrow \neg p & \text{Contrapuesta}
 \end{align*}
 \caption{Lista de equivalencias lógicas básicas. Todas ellas pueden ser demostradas haciendo la correspondiente tabla de verdad. A la derecha aparece un nombre para cada una de ellas.}
+\label{tb_EquivalenciasLogicas}
 \end{figure}
 
 \subsection{La regla de substitución}
@@ -271,13 +396,13 @@ Cuando definimos una tabla de verdad, tuvimos el cuidado de analizar cada uno de
 Entonces, si pierdo generalidad, cambiando la interpretación de $p$ por otra oración, digamos $r \vee s$, la equivalencia debe mantenerse, y obtenemos la siguiente equivalencia: \[\neg \neg (r \vee s) \iff r \vee s. \]
 ¡Enhorabuena! ¡Tenemos nueva equivalencia!
 
-Este proceso cambiar la interpretación de un símbolo atómico por cualquier oración se llama \emph{regla de sustitución}, y será la máquina para producir equivalencias que buscábamos.
+Este proceso cambiar la interpretación de un símbolo atómico por cualquier enunciado se llama \emph{sustitución}, y será la máquina para producir equivalencias que buscábamos.
 A los siguientes dos teoremas, en conjunto, le podemos llamar \emph{regla de sustitución}
 \begin{thm}[Regla de sustitución 1]
-	Si $\psi$ es una tautología, y $p$ una sub-oración atómica de $\psi$. Defina $\psi^\prime$ como el resultado de reemplazar en $\psi$ cada aparición de $p$ por una misma oración (no necesariamente atómica) $q$. Entonces $\psi^\prime$ es también una tautología.
+	Si $\psi$ es una tautología, y $p$ una sub-oración atómica de $\psi$. Defina $\psi^\prime$ como el resultado de reemplazar en $\psi$ cada aparición de $p$ por un mismo enunciado (no necesariamente atómica) $q$. Entonces $\psi^\prime$ es también una tautología.
 \end{thm}
 \begin{thm}[Regla de sustitución 2]
-	Si $\psi$ es una oración, y $q$ una sub-oración de $\psi$ que es equivalente a $r$, entonces si consideramos $\psi^\prime$ como el resultado de reemplazar en $\psi$ una aparición de $q$ por $r$, entonces $\psi \iff \psi^\prime$.
+	Si $\psi$ es un enunciado, y $q$ un sub-enunciado de $\psi$ que es equivalente a $r$, entonces si consideramos $\psi^\prime$ como el resultado de reemplazar en $\psi$ una aparición de $q$ por $r$, entonces $\psi \iff \psi^\prime$.
 \end{thm}
 
 Estos teoremas son útiles manipulando equivalencias; ya que, por definición son tautologías de la forma $p\leftrightarrow q$.
@@ -299,14 +424,22 @@ Juntemos todas las piezas para simplificar\footnote{Entiéndase simplificar como
 	por lo tanto la oración $\psi$ original es equivalente simplemente a $p$. El lector podrá comprobarlo con una tabla de verdad.
 \end{ejm}
 \begin{ejm}
-	Simplificar $\neg \left[\neg \left[ (p\vee q)\wedge r\right]\vee \neg q \right]$ 
-	%TODO simplificar a $q\wedge r$
+	Veamos qué tanto se puede simplificar este adefesio: $\neg \left[\neg \left[ (p\vee q)\wedge r\right]\vee \neg q \right]$.
+	
+	\begin{align*}
+		\neg \left[\neg \left[ (p\vee q)\wedge r\right]\vee \neg q \right] & \iff \neg \neg \left[ (p\vee q)\wedge r\right] \wedge \neg \neg q & \text{De Morgan} \\
+		& \iff  (p\vee q)\wedge r \wedge q & \text{Doble negación}\\
+		& \iff (p \vee q)\wedge (r \wedge q) & \text{Asociatividad}\\
+		& \iff (p\vee q)\wedge (q \wedge r) & \text{Conmutatividad}\\
+		& \iff (p\vee q)\wedge q \wedge r & \text{Asociatividad}\\
+		& \iff q \wedge r & \text{Absorción}
+	\end{align*}
 \end{ejm}
 Antes de cerrar la sección, hay que mencionar la siguiente notación que usaremos de ahora en adelante:
-La regla de asociatividad de la conjunción $p \wedge (q \wedge r) \iff (p \wedge q) \wedge r)$ nos dice que no importa cuál conjunción operemos primero, el resultado es exactamente el mismo (salvo equivalencias); así que por el bien de una notación legible, en lugar de escribir $p \wedge (q \wedge r)$ eliminaremos los paréntesis redundantes: $p \wedge q \wedge r$.
-De manera análoga, en lugar de escribir $(p \vee q) \vee r$ o $p \vee (q \vee r)$ simplemente será $p\vee q \vee r$.
+La regla de asociatividad de la conjunción $p \wedge (q \wedge r) \iff p \wedge q \wedge r$ nos dice que no importa cuál conjunción operemos primero, el resultado es exactamente el mismo; así que por el bien de una notación legible, trataremos de evitar paréntesis redundantes: lo dejaremos como $p \wedge q \wedge r$. Y lo análogo para la disyunción.
 
 \section{Inferencias lógicas}
+\label{sc_inferenciasLogicas}
 El propósito de este capítulo es distinguir un buen argumento de uno erróneo: nuestro principal objetivo no es determinar equivalente, sino \emph{inferencia}.
 
 Consideremos esta situación: Juan, buscando alguna escusa para no repasar las notas de su curso de matemáticas, se promete que si nadie lo invita a jugar League of Legends\footnote{Un juego multi-jugador en línea muy popular en el momento en el que estas notas fueron escritas.} se pondrá a estudiar. Al final nadie lo invitó.
@@ -322,20 +455,28 @@ Hay dos oraciones que nos da la situación, que lo podemos escribir simbólicame
 Recordemos que el propósito del operador condicional es determinar cuándo es verdad que si ocurren algunas oraciones (condiciones) se cumple alguna otra oración (conclusión) que es justamente lo que queremos, de hecho queremos que eso suceda siempre, y por supuesto, que suceda siempre se llama tautología.
 
 La premisa es que suceden dos cosas que podemos juntar con una conjunción: $(\neg q \rightarrow p) \wedge \neg q$ y la conclusión debería ser $p$. Pues hagamos la tabla de verdad de $(\neg q \rightarrow p) \wedge \neg q \rightarrow p$:
-% TODO: hacer la tabla de verdad
-¡Es una taulogogía!\footnote{Nótese que podríamos haber usado equivalencias para convencernos de que ciertamente es una tautología.}
+\begin{center}\begin{tabular}{|c|c||c|c|c|c|c|}
+	\hline
+	$p$ & $q$ & $\neg p$ & $\neg p \rightarrow q$ & $\neg q$ & $(\neg p \rightarrow q)\wedge \neg q$ & $(\neg p \rightarrow q)\wedge \neg q \rightarrow p$ \\
+	\hline \hline
+	F&F&V&F&V&F&V\\ \hline
+	F&V&V&V&F&F&V\\ \hline
+	V&F&F&V&V&V&V\\ \hline
+	V&V&F&V&F&F&V\\ \hline
+\end{tabular}\end{center}
+¡Es una tautología!\footnote{Nótese que podríamos haber usado equivalencias para convencernos de que es una tautología en lugar de hacer la tabla.}
 
 Podemos definir inferencia basados en el ejemplo anterior
 \begin{df}
 	Si $\psi$ y $\phi$ son dos oraciones, diremos que $\psi$ implica $\phi$, denotado por $\psi \implies \phi$ cuando la oración $\psi \rightarrow \phi$ sea una tautología. 
 \end{df}
 Hay hacer la siguiente observación importante. 
-Conocemos la equivalencia 
+Conocemos la equivalencia %TODO: ¿de dónde la conocemos?
 \begin{equation}\label{eq_reduccion}
 	p \leftrightarrow q \iff (p \rightarrow q) \wedge (q \rightarrow p).
 \end{equation}
-Si $p$ y $q$ son equivalentes implica que el lado izquierdo de la ecuación \ref{eq_reduccion} es una tautología, por lo que la conjunción del lado derecho también lo es, y la única forma de que esto suceda es que tanto $p \rightarrow q$ y $q\rightarrow q$ sean ambas tautologías; esto es, que $p\implies q$ y $q \implies p$.
-Recíprocamente, si $p \implies q$ y también $q \implies p$ implica que el lado derecho de la ecuación \ref{eq_reduccion} es una tautología, así que el lado izquierdo también lo es; esto quiere decir que $p\iff q$.
+Si $p$ y $q$ son equivalentes implica que el lado izquierdo de la equivalencia \ref{eq_reduccion} es una tautología, por lo que la conjunción del lado derecho también lo es, y la única forma de que esto suceda es que tanto $p \rightarrow q$ y $q\rightarrow q$ sean ambas tautologías; esto es, que $p\implies q$ y $q \implies p$.
+Recíprocamente, si $p \implies q$ y también $q \implies p$ implica que el lado derecho de la equivalencia \ref{eq_reduccion} es una tautología, así que el lado izquierdo también lo es; esto quiere decir que $p\iff q$.
 El siguiente teorema resume esta discusión
 \begin{thm}
 	Dados dos oraciones $p,q$, son equivalentes
@@ -345,7 +486,7 @@ El siguiente teorema resume esta discusión
 	\end{enumerate}
 \end{thm}
 Hay dos cosas importantes que rescatar de este teorema:
-lo primero es que toda equivalencia es una implicación, en particular toda regla en la tabla \ref{tb_EquivalenciasLogicas} es una regla de inferencia.
+lo primero es que toda equivalencia es una implicación, en particular toda regla en la tabla de equivalencias lógicas \ref{tb_EquivalenciasLogicas} es una regla de inferencia.
 Lo segundo: tenemos una nueva forma de obtener equivalencias: si queremos mostrar que $p \iff q$, basta probar que $p$ implica $q$ y que $q$ implica $p$; lo cual típicamente es más fácil que hacer una propia equivalencia usando tablas de verdad, o usando las leyes lógicas.
 
 Discutiremos ahora, de manera análoga a las leyes de equivalencia, un conjunto fundamental de inferencias para que usando las reglas de sustitución, podamos hacer inferencias de complejidad arbitraria.
@@ -488,4 +629,25 @@ Hay dos formas\footnote{En realidad sólo basta con predicados, la exhaustiva es
 	\item % El ejemplo donde aparce la existencial
 \end{itemize}\end{ejm}
 
+\chapter{Combinatoria enumerativa}
+\label{ch_combinatoriaEnumerativa}
+La combinatoria enumerativa es una rama de las matemáticas que nace de la clase de preguntas \emph{¿De cuántas formas puede ocurrir tal fenómeno}, \emph{¿Cuántos objetos cumplen esta característica?}, etcétera; por lo que en este capítulo se desarrollarán  sofisticadas y potentes técnicas de conteo. Nuestro lenguaje básico sigue siendo la teoría de conjuntos, así que enunciaremos los teoremas sobre ésta, y a través de los ejemplos veremos cómo se pueden particularizar para resolver problemas.
+
+Vamos a partir de dos principios básicos (obvios tal vez) que enunciaremos sin demostración\footnote{Ciertamente se requiere definir (explícita o implícitamente) las operaciones aritméticas naturales y sobre esa definición hacer la demostración: está fuera del ámbito de este trabajo.}: el \emph{principio de la suma} y el \emph{principio del producto}.
+
+El principio de la suma nos dice algo que es bastante obvio a nivel intuitivo: si tengo $n$ objetos de un tipo en una bolsa y $m$ objetos de otro tipo en otro, entonces al juntar las bolsas nos quedan $n+m$ objetos en total.
+Ciertamente obvio, y justo por eso se llama \emph{principio}: en matemáticas hay que comentar en alguna parte para poder ir construyendo teoría interesante sostenido por algo tan obvio que nadie en su sano juicio pueda dudar de su verdad.
+
+El otro principio, el del producto, nos dice algo que ya habíamos discutido %TODO: referencia al producto euclidiano
+sobre el número de elementos en un producto euclidiano; lo enunciaremos más abajo en su propia sección.
+
+\section{Principios aditivos}
+% TODO: hablar de qué tienen en común estos principios: de la suma y PIE
+\subsection{El principio de la suma}
+Como comentamos arriba, el principio de la suma me relaciona la cardinalidad de la unión de conjuntos con la de sus uniendos de tal forma que se cumple
+\begin{thm}[Principio de la suma]
+	Si $A,B$ son conjuntos ajenos %TODO revisar que esté definido, y agregar posiblemente referencia
+	entonces la cardinalidad de su unión es la suma de sus cardinalidades:
+	\[\left|A\cup B\right| = \left| A \right| +\left| B \right|.\]
+\end{thm}
 \end{document}
