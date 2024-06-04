@@ -488,4 +488,24 @@ Hay dos formas\footnote{En realidad sólo basta con predicados, la exhaustiva es
 	\item % El ejemplo donde aparce la existencial
 \end{itemize}\end{ejm}
 
+\chapter{Combinatoria enumerativa}
+La combinatoria enumerativa es una rama de las matemáticas que nace de la clase de preguntas \emph{¿De cuántas formas puede ocurrir tal fenómeno}, \emph{¿Cuántos objetos cumplen esta característica?}, etcétera; por lo que en este capítulo se desarrollarán  sofisticadas y potentes técnicas de conteo. Nuestro lenguaje básico sigue siendo la teoría de conjuntos, así que enunciaremos los teoremas sobre ésta, y a través de los ejemplos veremos cómo se pueden particularizar para resolver problemas.
+
+Vamos a partir de dos principios básicos (obvios tal vez) que enunciaremos sin demostración\footnote{Ciertamente se requiere definir (explícita o implícitamente) las operaciones aritméticas naturales y sobre esa definición hacer la demostración: está fuera del ámbito de este trabajo.}: el \emph{principio de la suma} y el \emph{principio del producto}.
+
+El principio de la suma nos dice algo que es bastante obvio a nivel intuitivo: si tengo $n$ objetos de un tipo en una bolsa y $m$ objetos de otro tipo en otro, entonces al juntar las bolsas nos quedan $n+m$ objetos en total.
+Ciertamente obvio, y justo por eso se llama \emph{principio}: en matemáticas hay que comentar en alguna parte para poder ir construyendo teoría interesante sostenido por algo tan obvio que nadie en su sano juicio pueda dudar de su verdad.
+
+El otro principio, el del producto, nos dice algo que ya habíamos discutido %TODO: referencia al producto euclidiano
+sobre el número de elementos en un producto euclidiano; lo enunciaremos más abajo en su propia sección.
+
+\section{Principios aditivos}
+% TODO: hablar de qué tienen en común estos principios: de la suma y PIE
+\subsection{El principio de la suma}
+Como comentamos arriba, el principio de la suma me relaciona la cardinalidad de la unión de conjuntos con la de sus uniendos de tal forma que se cumple
+\begin{thm}[Principio de la suma]
+	Si $A,B$ son conjuntos ajenos %TODO revisar que esté definido, y agregar posiblemente referencia
+	entonces la cardinalidad de su unión es la suma de sus cardinalidades:
+	\[\left|A\cup B\right| = \left| A \right| +\left| B \right|.\]
+\end{thm}
 \end{document}
