@@ -634,6 +634,135 @@ Hay dos formas\footnote{En realidad sólo basta con predicados, la exhaustiva es
 	\item % El ejemplo donde aparce la existencial
 \end{itemize}\end{ejm}
 
+Es común que los conjuntos aparezcan como elementos de otros conjuntos, como sugiere el siguiente ejemplo.
+\begin{ejm}
+	Si $A = \set{0,1, \set{0,1}}$, aquí $A$ tiene tres elementos (distintos): $0$, $1$ y otro elemento es el conjunto $\set{0,1}$ cuyos elementos son el $0$ y el $1$.
+\end{ejm}
+
+\begin{ejm}
+	Considere el conjunto $A= \set{0,\set{0}, \set{\set{0}}}$ que tiene tres elementos: el elemento $0$, el elemento $\set{0}$ que es un conjunto cuyo único elemento es $0$; y el elemento $\set{\set{0}}$ que es el conjunto cuyo único elemento es el conjunto cuyo único elemento es $0$.
+	Si esto suena confuso es que vamos por buen camino, la confusión deberá ser nuestra brújula a lo largo de este trabajo.
+\end{ejm}
+
+De donde se enriquecen las matemáticas no es de los objetos de estudios en sí, sino de la forma en la que interactúan entre sí, su combinatoria.
+Exploraremos esto en las siguientes secciones.
+\section{Subconjuntos}
+% TODO algún texto de apertura y motivación
+\begin{df}
+	Si $A,B$ son conjuntos. Diremos que $A$ es un subconjunto de $B$ ($A\subseteq B$) si todo elemento de $A$ es también un elemento de $B$; o de manera simbólica, si
+	\[\forall x\, x\in A \implies x \in B \]
+\end{df}
+
+% TODO: Un diagrama de Venn
+\begin{ejm}
+	Si $A=\set{0,1}$ y $B=\set{0,1,2}$, entonces $A\subseteq B$ porque todos los elementos de $A$ (0 y 1) son también elementos de $B$
+\end{ejm}
+
+\begin{ejm}
+	Si $A=\set{0,0,0,0,0}$ y $B=\set{0,1}$ entonces, aunque $A$ enliste ``más elementos" que $B$ se tiene que $A\subseteq B$ porque todo elemento de $A$ (el único, $0$) es elemento de $B$ ($0 \in B$). 
+\end{ejm}
+
+Como vamos a trabajar mucho con el símbolo $\subseteq$, necesitamos tener clara la negación de $A\subseteq B$, que la vamos a denotar por $A \not \subseteq B$
+\begin{align*}
+	A \not \subseteq B &\equiv \neg (A \subseteq B) & \\
+	&\iff \neg (\forall x\, x \in A \implies x \in B)\\
+	&\iff \exists x\, \neg (x \in A \implies x \in B)\\
+	&\iff \exists x\, \left( x\in A \wedge x \notin B \right)
+\end{align*}
+
+\begin{ejm}
+	Considere $A = \set{0,1}$, $B=\set{0,\set{0,1}}$ entonces se cumple que $A\in B$, pero no es cierto que $A\subseteq B$, ya que $1\in A$, pero $1 \notin B$.
+\end{ejm}
+
+\begin{df}
+	Dos conjuntos son iguales si contienen exactamente los mismos elementos; es decir,
+	Si $A,B$ son conjuntos, decimos que $A=B$ si \[\forall x \, \left(x\in A \iff x \in B \right) \]
+\end{df}
+
+\begin{ejm}
+	Los siguientes conjuntos $A=\set{0,1}$, $B=\set{1,0}$ son el mismo porque los únicos elementos de ambos son el 0 y el 1; no hay otro. Por eso decíamos que un conjunto no guarda orden.
+\end{ejm}
+
+Vale la pena observar que si $A,B$ son conjuntos entonces 
+\begin{align*}
+	A = B 
+	&\iff \forall x\, \left(x\in A \iff x \in B\right)\\
+	&\iff  \forall x\, \left( (x\in A \implies x \in B) \wedge ((x\in B \implies x \in A))\right) \\
+	&\iff \forall x\, (x\in A \implies x \in B) \wedge \forall x\, (x\in B \implies x \in A)\\
+	&\iff A \subseteq B \wedge B \subseteq A
+\end{align*}
+por lo que dos conjuntos son iguales si y sólo si cualquiera de ellos está contenido en el otro:
+\begin{thm}\label{thm_igualdadConjuntos}
+	Dados dos conjuntos $A,B$ se cumple que
+	\[A = B \iff A \subseteq B \wedge B \subseteq A \]
+\end{thm}
+
+\begin{ejm}
+	Considere $A = \set{0,1}$ y $B=\set{0,0,1}$. Es claro que $A \subseteq B$; sin embargo, si uno hace el trabajo con cuidado, uno puede notar que todo elemento de $B$ es también un elemento de $A$, lo que significa que $B \subseteq A$.
+	Por el teorema anterior \ref{thm_igualdadConjuntos} se deduce que $A=B$, aunque en apariencia uno tenga más elementos que otro.
+	
+	A esto nos referimos con que un conjunto no tiene elementos repetidos: no es que no los tenga, es que no los ve.
+\end{ejm}
+
+% TODO: incluir ejemplos como en la primer tarea.
+
+\begin{ejm}
+	Considere $A=\set{0,1}, B=\set{0,1,\set{0,1}}, C=\set{\set{0,1}}, D= \set{\set{0}}$. Entonces:
+	\begin{itemize}
+		\item $A\in B$ y también $A\subseteq B$.
+		\item $A\in C$, pero $A \not \subseteq C$ porque $0 \notin C$.
+		\item $A\notin D$, y $A\not \subseteq D$ por la misma razón
+	\end{itemize}
+\end{ejm}
+
+El símbolo $\subseteq$ debe pensarse como una mutación de la relación de orden de los números $\leq$ pero curvada.
+Luego, en los números el término $x<y$ significa que $x\leq y$ pero $x \neq y$, o sea. 
+
+\begin{df}
+	Si $A,B$ son conjuntos, vamos a escribir $A \subset B$ como un sinónimo de $A \subseteq B \wedge A \neq B$.
+\end{df}
+Ahora, como $A = B \iff A \subseteq B \wedge B \subseteq A$ entonces
+\begin{equation*}
+	A \subset B \iff A \subseteq B \wedge B \not \subseteq A.
+\end{equation*}
+
+\begin{ejm}
+	$\set{0} \subseteq \set{0}$, pero es falso que $\set{0} \subset \set{0}$ porque son el mismo conjunto.
+\end{ejm}
+
+\begin{ejm}
+	$\set{0} \subset \set{0,1}$ porque $\set{0} \subseteq \set{0,1}$ y además los conjuntos $\set{0}$ y $\set{0,1}$ son distintos.
+\end{ejm}
+
+\section{El conjunto vacío}
+Entre todos los conjuntos hay uno que destaca por su simpleza: el que no tiene elementos
+
+\begin{df}\label{df_vacio}
+	Un conjunto $A$ es \emph{vacío} si no tiene elementos; es decir si,
+	\[\forall x\, x\in A \implies \bot.\]
+\end{df}
+
+\begin{thm}\label{thm_vacioContenido}
+	Si $A,B$ son conjuntos, y $A$ es vacío, entonces $A\subseteq B$.
+\end{thm}
+\begin{proof}
+	Supongamos que $A \not \subseteq B$, luego $\exists x\, \left(x\in A \wedge x \notin B \right)$, en particular $\exists x\, x\in A$.
+	Como $A$ es vacío y $x\in A$ se sigue por la definición \ref{df_vacio} que $\bot$. 
+	Tenemos una contradicción que emerge de la suposición de $A \not\subseteq B$; así que $A \subseteq B$.
+\end{proof}
+\begin{thm}
+	Si $A,B$ son vacíos, entonces $A=B$
+\end{thm}
+\begin{proof}
+	Por el teorema \ref{thm_vacioContenido} se sigue que $A\subseteq B$, y por el mismo teorema que $B\subseteq A$.
+	Por lo tanto $A=B$.
+\end{proof}
+
+Hemos probado que el conjunto vacío es único. Hay que ponerle nombre
+\begin{df}
+	Al conjunto vacío se le denota por $\emptyset$.
+\end{df}
+
 \chapter{Combinatoria enumerativa}
 \label{ch_combinatoriaEnumerativa}
 La combinatoria enumerativa es una rama de las matemáticas que nace de la clase de preguntas \emph{¿De cuántas formas puede ocurrir tal fenómeno}, \emph{¿Cuántos objetos cumplen esta característica?}, etcétera; por lo que en este capítulo se desarrollarán  sofisticadas y potentes técnicas de conteo. Nuestro lenguaje básico sigue siendo la teoría de conjuntos, así que enunciaremos los teoremas sobre ésta, y a través de los ejemplos veremos cómo se pueden particularizar para resolver problemas.
