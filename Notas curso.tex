@@ -34,6 +34,11 @@
 \newtheorem{df}{Definición}[chapter]
 \newtheorem*{ejm}{Ejemplo}
 
+% TODO globales:
+% Usar \equiv en lugar de = para definiciones de enunciados (fórmulas)
+% Preferir el término enunciado por encima de oración
+% No mencionar "este trabajo", en lugar preferir "el curso"
+
 %\newenvironment{sol}{\noindent{\it Solución.}}{\hfill$\blacksquare$}
 \begin{document}
 \chapter{Lógica matemática}
@@ -549,7 +554,7 @@ Uno puede expresar lo que acaba de ocurrir con nuestro lenguaje: si consideramos
 Ahora, por supuesto que una oración puede tener más de un cuantificador, expresiones como $\exists x \exists y\, x^2 = y + 1$ tienen sentido en la lógica, ésta en particular es verdadera porque $1^2 = 0 + 1$ (tomando $x=1$ y $y=0$). Exploremos algunos ejemplos.
 
 \begin{ejm}
-	Considere el enunciado abierto $p(x,y)=x^2=y$.
+	Considere el enunciado abierto $p(x,y)\equiv x^2=y$.
 	
 	Dejando a $x$ correr libre, y cuantificando $y$ con una existencial tenemos el enunciado abierto $\exists y\, x^2=y$, que para cada $x=x_0$ particular se convierte en $\exists y\, x_0^2=y$ que se podría decir en lenguaje coloquial ``$x_0$ tiene un cuadrado" (¿Puede el lector explicar por qué?) el cual es verdadero para cualquier $y$.
 	Hemos, por lo tanto, concluido que $\forall x \exists y \, x^2=y$.
@@ -573,11 +578,11 @@ pero los objetos quedarán claros al desarrollar contenido alrededor de ellos
 	Un \emph{conjunto} es una colección desordenada de objetos que no distingue repetición.
 \end{df}
 
-El hábil lector pudo darse cuenta de que estamos definiendo 
-conjunto en términos de sí mismo (o algo equivalente: colección.) Esto ciertamente causa malestar; este problema se puede arreglar axiomatizando las reglas de la teoría de conjuntos, pero el autor cree que no se deba proceder así en un trabajo como el presente.   % TODO: referencia a algún libro de teoría de conjuntos
+El hábil lector pudo darse cuenta de que estamos definiendo conjunto en términos de sí mismo (o algo equivalente: colección.) Esto ciertamente causa malestar; este problema se puede arreglar axiomatizando las reglas de la teoría de conjuntos, pero el autor cree que no se deba proceder así en un trabajo como el presente.   % TODO: referencia a algún libro de teoría de conjuntos
 % TODO: agregar contexto histórico 
 
 El único propósito de un conjunto es deliminar de una manera clara y concisa cuáles con los elementos que pertenecen a él; y de igual manera, lo único que un conjunto \emph{sabe}, es cuáles son sus elementos.
+En otras palabras, de alguna manera un conjunto y un predicado son de alguna manera objetos parecidos, pero hay que \emph{tomar con pinzas} esto, ya que no es difícil llegar a paradojas.
 Exploremos el siguiente ejemplo, para explicar a qué me refiero y simultáneamente para introducir notación.
 
 Considere el conjunto $A$ de todos los continentes del planeta\footnote{Usando el modelo de los 6 continentes.}, es claro que, sin la mínima ambigüedad, América ($x$) y África ($y$) son miembros de este conjunto; sin embargo México ($z$) no lo es.
