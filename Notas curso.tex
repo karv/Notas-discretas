@@ -562,6 +562,31 @@ Ahora, por supuesto que una oración puede tener más de un cuantificador, expre
 	Por otro lado, si consideramos el enunciado abierto $\forall y\, x^2=y$ en el que si fijamos $x=x_0$ se convierte en la oración $\forall y\, x_0^2=y$; esto es, el cuadrado de este $x_0$ es igual a cualquier número. ¡ABSURDO! ¡No puede ser que un número sea igual a cualquier otro, esto implicaría que no hay más de un número! ciertamente la oración es falsa sin importar el valor de $x_0$ y concluimos que $\forall x \exists y\, x^2=y$ tiene un valor de verdad falso.
 \end{ejm}
 
+\begin{ejm}
+	Considere un universo $\Omega$ formada por todas las personas habidas y por haber. Uno puede crear los predicados de relaciones sociales a partir de relaciones sencillas:
+	consideremos que $p(x,y)$ es verdadero si y sólo si $x$ es hijo(a) de $y$. Notemos las siguientes afirmaciones
+	% TODO faltan los ejemplos para estudiar e interpretar todas las combinaciones de cuantificación y orden
+	\begin{enumerate}
+		\item $p(x,y)$ significa que $y$ es madre(padre) de $x$.
+		\item Un par de personas son medio hermanos si comparten una madre(padre); esto simbólicamente se escribe \[h(x,y) \equiv \exists z \, \left( h(x,z) \wedge h(y,z)\right),\]
+		esto es, $x,y$ son medio hermanos si existe alguna madre(padre) de ambos.
+		
+		\item Para que $x,y$ sean hermanos, debe ocurrir que no solamente tengan un progenitor inmediato, sido dos; esto lo podemos escribir así
+		\[H(x,y)\equiv \exists z_1 \exists z_2 \, \left(z_1 \neq z_2 \wedge p(x,z_1) \wedge p(x_z2) \wedge p(y,z_1) \wedge p(y,z_2) \right) \]
+		
+		\item Se pueden separar a las personas en dos tipos: las que dejan descendencia y las que no.
+		Las que dejan descendencia son los $x$ que cumplen el siguiente predicado
+		\[d(x)\equiv \exists y\, p(y,x) \]
+		y por lo tanto los que no dejan descendencia es su negación
+		\begin{align*}
+			\neg d(x) 
+			& \iff \neg \exists y\, p(y,x)\\
+			& \iff \forall y\, \neg p(y,x)
+		\end{align*}
+		\item Como nuestro universo contiene a todas las personas que hayan existido, debe ocurrir que toda persona tenga un padre y una madre. Esto se puede escribir rigurosamente en nuestro lenguaje  % TODO: está incompleto. Tal vez quede muy complejo: hay que decir que hay dos padres diferentes, y si alguien es papá, debe ser alguno de ellos
+		\[\forall x \forall y \exists z_1 \exists z_2 \, \left(z_1 \neq z_2 \right) \]
+	\end{enumerate}
+\end{ejm}
 % TODO: ejemplos del alcance del lenguaje: aplicaciones de uso diario: relaciones familiares
 % TODO: dejaré este capítulo por ahora
 
