@@ -32,7 +32,7 @@
 
 \theoremstyle{definition}
 \newtheorem{df}{Definición}[chapter]
-\newtheorem*{ejm}{Ejemplo}
+\newtheorem{ejm}{Ejemplo}[chapter]
 
 % TODO globales:
 % Usar \equiv en lugar de = para definiciones de enunciados (fórmulas)
@@ -562,10 +562,66 @@ Ahora, por supuesto que una oración puede tener más de un cuantificador, expre
 	Por otro lado, si consideramos el enunciado abierto $\forall y\, x^2=y$ en el que si fijamos $x=x_0$ se convierte en la oración $\forall y\, x_0^2=y$; esto es, el cuadrado de este $x_0$ es igual a cualquier número. ¡ABSURDO! ¡No puede ser que un número sea igual a cualquier otro, esto implicaría que no hay más de un número! ciertamente la oración es falsa sin importar el valor de $x_0$ y concluimos que $\forall x \exists y\, x^2=y$ tiene un valor de verdad falso.
 \end{ejm}
 
-\begin{ejm}
+\subsubsection{Cuantificadores iterados}
+Los cuantificadores nos abrieron la puerta para expresar ideas más complejas que las que nos ofrecen los enunciados de primer orden, lo cierto es que un sólo cuantificador es muy poco (por no mencionar que algebraicamente es un horror) por lo que abrimos la posibilidad de iterar múltiples cuantificadores.
+Estudiaremos cómo interactúan los cuantificadores en un mismo enunciado, y postularemos equivalencias e inferencias sobre ellos
+
+\begin{ejm}\label{ej_relaciónPadre}
 	Considere un universo $\Omega$ formada por todas las personas habidas y por haber. Uno puede crear los predicados de relaciones sociales a partir de relaciones sencillas:
-	consideremos que $p(x,y)$ es verdadero si y sólo si $x$ es hijo(a) de $y$. Notemos las siguientes afirmaciones
-	% TODO faltan los ejemplos para estudiar e interpretar todas las combinaciones de cuantificación y orden
+	consideremos que $p(x,y)$ es verdadero si y sólo si $x$ es hijo(a) de $y$.
+	
+	¿Por qué no analizamos todas las posibilidades y órdenes en las que se puedan cuantizar las variables libres $x,y$ de $p$?
+	
+	\begin{description}
+		\item[$\exists x \exists y\, p(x,y)$:] Ésta es muy sencilla, aquí sólo dice que hay una persona ($x$) que es hijo(a) de alguien ($y$).
+		\item[$\exists y \exists x\, p(x,y)$:] Ésta dice exactamente lo mismo que el caso anterior, en ambos casos sólo se requiere que exista alguna relación directa de sangre.
+		\[\exists x \exists y\, p(x,y)\iff\exists y \exists x\, p(x,y) \]
+		
+		Esta observación se cumple independientemente de cómo se interpreta $p$, según lo dice el teorema \ref{thm_implicacionesOrdenCuantificadores}.
+		
+		Para evitar escribir muchos símbolos en una oración, a veces se suele abreviar $\exists x \exists y\, \phi(x,y)$ como $\exists x,y\, \phi(x,y)$, de alguna manera ``factorizando'' el cuantificador.
+		Esta notación hace más evidente que el orden en el que aparezcan cuantificados dos existenciales no importa.
+		Así podemos escribir
+			\[\exists x \exists y\, p(x,y)\iff\exists x,y\, p(x,y) \]
+			
+	\item[$\forall x \forall y\, p(x,y)$:] Este enunciado se podría leer	``para toda persona $x$ y para toda persona $y$, $x$ es hijo(a) de $y$.'', o más naturalmente, ``todos son hijos de todos'', cosa que evidentemente es falso con la interpretación de $p$ en su universo $\Omega$.
+	
+	El mismo argumento que en el ejemplo anterior aplica aquí: 
+	\begin{enumerate}
+		\item El orden en el que aparecen cuantificados dos variables con un cuantificador universal es irrelevante:
+		\[\forall x \forall y\, \phi(x,y) \iff \forall y \forall x\, \phi(x,y) \]
+		\item Podemos escribir $\forall x,y\, \phi(x,y)$ en lugar de $\forall x \forall y\, \phi(x,y)$
+	\end{enumerate}
+	
+	\item[$\forall x \exists y\, p(x,y)$:] Leyendo este enunciado de manera literal ``Todo $x$ tiene un $y$ de tal suerte que $x$ es hijo de $y$''; si lo convertimos a algo más natural podría ser ``toda persona tiene un padre(madre)'', que naturalmente debería ser cierto\footnote{Excepto por \emph{la primer persona} que existió, dejaremos esta discusión para la unidad sobre inducción.} %TODO: hacer esta discusión (el huevo o la gallina)
+	
+	\item[$\forall y \exists x\, p(x,y)$:] Si cambiamos qué variables aparecen en cada cuantificador llegamos a este caso que se lee ``toda persona $y$ tiene una $x$ de tal forma que $x$ es hijo(a) de $y$``, o bien ``toda persona tiene un hijo(a)''.
+	En esta ocasión el enunciado es falso, ya que hay personas sin descendencia.
+	
+	Es importante notar entonces que incluso si $\forall x \exists y\, p(x,y)$ fue verdadero, es falso que $\forall y \exists x\, p(x,y)$.
+	
+	\item[$\exists x \forall y \, p(x,y)$:]Este ejemplo es justamente el caso anterior, pero con el orden de los cuantificadores cambiados; leyéndose ``Existe $x$ tal que para todo $y$ $x$ es hijo(a) de $y$'', o bien, ``Hay alguien quien es hijo(a) de todos''.
+	Hay que notar que la interpretación es abrumadoramente distinta al caso anterior, cuando únicamente cambiamos de orden los cuantificadores.
+	
+	La lección aquí es que, el orden importa (en el sentido de qué variable aparece cuantificada, y con qué cuantificador) cuando los cuantificadores son distintos.
+	El teorema \ref{thm_implicacionesOrdenCuantificadores} nos da algunas relaciones de implicación que siempre se cumplen.
+	
+	\item[$\exists y \forall x\, p(x,y)$:] Leído ``existe $y$ tal que para toda $x$, $x$ es hijo(a) de $y$''; o bien ``Hay un padre(madre) de todos'', que es falso.
+	\end{description}
+\end{ejm}
+Cabe mencionar que en lógica, uno habla de la \emph{complejidad} de un enunciado en función del número de cuantificadores que aparecen, y de su primer cuantificador leído de izquierda a derecha. 
+Por ejemplo, $\forall x\,\phi(x)$ tiene complejidad $\Pi_1$, y $\exists x \forall y\, \phi(x,y)$ tiene complejidad $\Sigma_2$.
+
+Un resultado muy bonitos sobre esta complejidad es el siguiente teorema. % TODO: teorema sobre equivalencias e inferencias sobre el orden cuantificadores
+\begin{thm}
+	Si $p(x,y)$ es un enunciado abierto con variables libres $x,y$, entonces % TODO
+	
+	\label{thm_implicacionesOrdenCuantificadores}
+\end{thm}
+
+\begin{ejm}
+	Recordemos el contexto del ejemplo \ref{ej_relaciónPadre}.
+	Notemos las siguientes afirmaciones
 	\begin{enumerate}
 		\item $p(x,y)$ significa que $y$ es madre(padre) de $x$.
 		\item Un par de personas son medio hermanos si comparten una madre(padre); esto simbólicamente se escribe \[h(x,y) \equiv \exists z \, \left( h(x,z) \wedge h(y,z)\right),\]
@@ -585,9 +641,25 @@ Ahora, por supuesto que una oración puede tener más de un cuantificador, expre
 		\end{align*}
 		\item Como nuestro universo contiene a todas las personas que hayan existido, debe ocurrir que toda persona tenga un padre y una madre. Esto se puede escribir rigurosamente en nuestro lenguaje  % TODO: está incompleto. Tal vez quede muy complejo: hay que decir que hay dos padres diferentes, y si alguien es papá, debe ser alguno de ellos
 		\[\forall x \forall y \exists z_1 \exists z_2 \, \left(z_1 \neq z_2 \right) \]
+		\item Uno entonces puede utilizar estos enunciados para ir produciendo otros más complejos: se dice que $x$ es sobrino(a) de $y$ si $x$ es el hijo de un hermano de $y$; o sea, que existe una persona $z$ que es hermano(a) de $y$ y padre(madre) de $x$:
+		\begin{equation}\label{eq_tio}
+			\exists z \, \left(H(z,y) \wedge p(x,z) \right),
+		\end{equation}
+		y si uno quiere, se puede expresar puramente en términos de $p$ si sustituimos $H$ en \ref{eq_tio} y aplicando algunas leyes de equivalencia queda de la siguiente forma:
+		\begin{equation*}
+			\exists z,z_1,z_2 \,
+			\left( 
+				z_1 \neq z_2 \wedge 
+				p(x,z_1) \wedge 
+				p(x,z_2) \wedge 
+				p(y,z_1) \wedge 
+				p(y,z_2	\wedge 
+				p(x,z)
+			\right)
+		\end{equation*}
+		lo cual yo creo que es una mala idea; de aquí la importancia de la \emph{abstracción}.
 	\end{enumerate}
 \end{ejm}
-% TODO: ejemplos del alcance del lenguaje: aplicaciones de uso diario: relaciones familiares
 % TODO: dejaré este capítulo por ahora
 
 \chapter{Teoría ingenua de conjuntos}
