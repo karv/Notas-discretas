@@ -42,66 +42,74 @@
 %\newenvironment{sol}{\noindent{\it Solución.}}{\hfill$\blacksquare$}
 \begin{document}
 \chapter{Lógica matemática}
+La lógica es, en matemáticas, la primera capa de fundación y abstracción en la que se construyen las demás ramas.
+El propósito de este capítulo entonces, es definir el lenguaje con el que se trabaja para evitar cometer errores de pensamiento, para evitar ser engañados y auto-engañarnos.
+Así que la lógica proporciona, más allá de las aplicaciones matemáticas, herramientas para una de las habilidades intelectuales más importantes de nuestra era: el pensamiento crítico.
 % TODO: hablar de lógica, lógica de enunciados de primer orden
-Empezamos definiendo el objeto de estudio de este capítulo.
+
+Empezamos esta unidad definiendo el objeto de estudio de este capítulo.
 \begin{df}
 	Un \emph{enunciado}
-		\footnote{Más adelante daremos una definición formal de ésta} %TODO 
+		\footnote{Más adelante daremos una definición más formal de ésta} %TODO la definición recursiva
 		(a veces llamado oración) es una expresión declarativa cuyo valor de verdad está determinado.
 \end{df}
 
 % TODO: cambiar oración por enunciado
-\section{Lógica de oraciones}
-Por ejemplo, expresiones del tipo ``Si mañana llueve, voy a faltar a clase" o ``María sabe inglés y francés" son oraciones; también, más al contexto de las matemáticas ``$2+2=4$" o bien ``$3^2 > 20$" también lo son.
-Expresiones como ``¿Qué hora es?", ``¡Qué calor!" o ``Haz tu tarea" no son oraciones, ya que no son expresiones declarativas.
+%\section{Lógica de enunciados}
+Por ejemplo, expresiones del tipo ``Si mañana llueve, voy a faltar a clase'' o ``María sabe inglés y francés'' son oraciones; también, más al contexto de las matemáticas ``$2+2=4$'' o bien ``$3^2 > 20$'' también lo son.
+Expresiones como ``¿Qué hora es?'', ``¡Qué calor!'' o ``Haz tu tarea'' no son oraciones, ya que no son expresiones declarativas.
 
 Aquí estamos usando comillas dobles para separar el contenido (lo que este trabajo dice) del objeto (lo que el objeto dice), y lo seguiremos usando cuando pueda haber ambigüedad.
 
 \section{Operadores lógicos}
 
-Como en todas las matemáticas, el contenido emerge cuando miramos a cómo interaccionan las cosas; en este caso, y como no tenemos otros objetos hasta ahora que las oraciones, debemos preguntarnos: ¿cómo es que las oraciones interaccionan entre sí?
+Como en todas las matemáticas, el contenido emerge cuando miramos cómo interactúan las cosas; en este caso, y como no tenemos otros objetos hasta ahora que los enunciados, debemos preguntarnos: ¿cómo es que los enunciados interactúan entre sí? ¿cómo se relacionan unos con otros?
 
 \begin{df}
-	Un operador\footnote{A veces llamado conector} lógico es una función\footnote %TODO
-	{esto es aproximadamente, una regla para construir oraciones a partir de otras ya definidas, profundizaremos más adelante en el capítulo refx}
+	Un operador\footnote{a veces llamado conector} lógico es una función\footnote %TODO
+	{esto es aproximadamente, una regla para construir enunciados a partir de otros, profundizaremos más adelante en el capítulo \ref{ch_funciones}}
 	que a cada oración, o pareja de ellos, les asigna alguna otra.
 \end{df}
 
-Con el fin de construir operadores lógicos, haremos uso de \emph{tablas de verdad}, es decir, una tabla en la que se analice el comportamiento de una oración en todos los posibles casos que puedan ocurrir, dada una cantidad de enunciados simples. En la tabla \ref{tb_tablaVerdadOperadores} se pueden ver las tablas de verdad de los operadores que vamos a definir a continuación.
+Con el fin de construir operadores lógicos, haremos uso de \emph{tablas de verdad}, es decir, una tabla en la que se analice el comportamiento de enunciado en todos los posibles casos que puedan ocurrir, dada una cantidad de enunciados simples. En la tabla \ref{tb_tablaVerdadOperadores} se pueden ver las tablas de verdad de los operadores que vamos a definir a continuación.
 
 Procedemos a hacer una lista de los operadores que nos interesan.
 \begin{description}
-	\item [Negación ($\neg$)]  % TODO: ¿No se ve horrible agregar aquí los símbolos de los operadores?
-	Si $p$ es una oración, su negación $\neg p$ (no $p$) alterna el valor de verdad de $p$; esto es, $\neg p$ es falsa sólo cuando $p$ es verdadera.
+	\item [Negación ($\neg$)]  % TODO: ¿No se ve horrible agregar aquí los símbolos de los operadores? Se ve bien
+	Si $p$ es un enunciado, su negación $\neg p$ (no $p$) alterna el valor de verdad de $p$; esto es, $\neg p$ es falsa sólo cuando $p$ es verdadera.
 	
 	Por ejemplo, si $p$ representa ``$2+2=5$", $\neg p$ es la oración que afirma ``no es cierto que $2+2=2$", o bien ``$2+2\neq 5$".
 
-	\item[Conjunción ($\wedge$)] El operador binario $\wedge$ asigna a cada par de oraciones $p,q$ una nueva oración $p \wedge q$ ($p$ y $q$) que es verdadera exactamente cuando los dos operandos también lo son.
+	\item[Conjunción ($\wedge$)] El operador binario $\wedge$ asigna a cada par de enunciados $p,q$ un nuevo enunciado $p \wedge q$ ($p$ y $q$) que es verdadera exactamente cuando los dos operandos también lo son.
 
 	Por ejemplo, haciendo que $p$ se interprete como ``Los cerdos vuelan" y $q$ como ``Los gatos nadan", entonces el símbolo $p\wedge q$ debe interpretarse como ``Los cerdos vuelan y los gatos caminan", cosa que es falso.
 	
-	\item[Disyunción ($\vee$)] Este operador binario $\vee$ compone dos oraciones $p,q$ en $p\vee q$($p$ o $q$) que requiere que al menos uno de ambos sea verdadero para ser, en conjunto, verdadero; equivalentemente, la única forma en la que $p \vee q$ sea falso es que tanto $p$ como $q$ sea falso.
+	\item[Disyunción ($\vee$)] Este operador binario $\vee$ compone dos enunciados $p,q$ en $p\vee q$($p$ o $q$) que requiere que al menos uno de ambos sea verdadero para ser, en conjunto, verdadero; equivalentemente, la única forma en la que $p \vee q$ sea falso es que tanto $p$ como $q$ sea falso.
 	
-	Tomando el mismo ejemplo del cerdo y el gato, $p\vee q$ se interpreta como ``los cerdos vuelan o los gatos caminan". Como los gatos caminan, entonces $p \vee q$ es verdadero.
+	Tomando el mismo ejemplo del cerdo y el gato, $p\vee q$ se interpreta como ``los cerdos vuelan o los gatos caminan".
+	Como los gatos caminan, entonces $p \vee q$ es verdadero.
 	
-	\item[Disyunción excluyente ($\veebar$)] A veces se requiere, a diferencia de la disyunción, que exactamente uno de los operandos sea verdadero, y \emph{excluir} el caso en el que ambos sean verdaderos. Aquí entra la disyunción excluyente, que su valor de verdad es verdadero exactamente cuando uno de los dos operandos es verdadero.
+	\item[Disyunción excluyente ($\veebar$)] A veces se requiere, a diferencia de la disyunción, que exactamente uno de los operandos sea verdadero, y \emph{excluir} el caso en el que ambos sean verdaderos.
+	Aquí entra la disyunción excluyente, que su valor de verdad es verdadero exactamente cuando uno de los dos operandos es verdadero.
 	Se puede pensar en este operador como una prueba de diferencia: devuelve verdadero cuando los valores de la entrada son diferentes entre sí.
 	
 	Aunque este operador no parezca tan natural como los anteriores, es bastante usado por razones técnicas, ya que su álgebra es bastante bien comportada. % TODO: Algúna referencia a la parte de conjuntos donde se trata esto.
 	
-	\item[Condicional ($\rightarrow$)] Este operador juega un papel muy importante en la construcción de conocimiento nuevo, ¡en inferencia, vaya! y por ello tendrá un papel estelar en la sección \ref{sc_inferenciasLogicas}.
+	\item[Condicional ($\rightarrow$)] Este operador juega un papel muy importante en inferencia y deducción, y por ello tendrá un papel estelar en la sección \ref{sc_inferenciasLogicas}.
 	
-	Este operador intenta modelar situaciones donde exista una pareja premisa-conclusión. Consideramos un par de ejemplos
+	Este operador intenta modelar situaciones donde exista una pareja premisa-conclusión como en los siguientes ejemplos:
 	
 	Consideremos un símbolo de enunciado $p$ que tenga interpretación ``Estudio el fin de semana" y $q$ interpretando a ``Apruebo el curso de matemáticas discretas".
 	Queremos darle un valor de verdad al término $p \rightarrow q$ de tal manera que se interprete como $p\rightarrow q \equiv$ ``Si $p$ entonces $q$" $\equiv$ ``Si estudio el fin de semana, entonces apruebo el curso de matemáticas discretas".
 	
-	Consideremos todas las cuatro combinaciones de los posibles valores de verdad para la pareja de $p$ y $q$.
+	Exploremos las cuatro combinaciones de los posibles valores de verdad para la pareja de $p$ y $q$.
 	Por ejemplo, si $p,q$ son ambos verdaderos entonces $p\rightarrow q$ debería ser verdadera, porque al final estudié y terminé pasando el curso.
 	
 	¿Qué pasaría si $p$ fuera falsa?
 	Imaginemos que el profesor del curso le dice a Panchito: ``si estudias, seguramente pasas este curso" y Panchito decide hacer caso omiso y este fin de semana decidió no abrir su cuaderno del curso. Como era de esperarse, reprobó.
-	¿El profesor dijo mentiras? ¡Por supuesto que no! ¡Si $p$ es falso y $q$ también es falso, entonces $p\rightarrow q$ es verdadera! (vea la tabla \ref{tb_tablaVerdadOperadores}.)
+	¿El profesor dijo mentiras? 
+	¡Por supuesto que no! 
+	¡Si $p$ es falso y $q$ también es falso, entonces $p\rightarrow q$ es verdadera! (vea la tabla \ref{tb_tablaVerdadOperadores}.)
 	Es exactamente el mismo caso para cuando $p$ es falso y $q$ verdadero.
 	En definitiva: si no se cumple la premisa de un enunciado $p\rightarrow q$, entonces el valor de verdad de $p\rightarrow q$ es verdadero.
 	
@@ -110,26 +118,28 @@ Procedemos a hacer una lista de los operadores que nos interesan.
 	
 	Toda esta argumentación queda resumida en la tabla \ref{tb_tablaVerdadOperadores}.
 	
-	Cabe mencionar que este operador se puede confundir bastante con la noción de implicación ($\implies$) de la que hablaremos después.
+	Cabe mencionar que este operador se puede confundir bastante con la noción de implicación ($\implies$) de la que hablaremos después. %TODO: ¿dejar esto aquí?
 	
-	\item[Bicondicional ($\leftrightarrow$)] Este operador es el equivalente al símbolo de igualdad en álgebra. Es justamente eso: una comparación de igualdad.
+	\item[Bicondicional ($\leftrightarrow$)] Este operador es el equivalente al símbolo de igualdad en álgebra. Es justamente eso: una comparación de igualdad, a diferencia del operador $\triangle$ que es comparación de diferencia.
 	
 	Si se tienen dos enunciados $p,q$, vamos a decir que $p\leftrightarrow q$ cuando ambos sean verdaderos, o ambos sean falsos.
 	
-	La elección del símbolo $\leftrightarrow$ es que, como después lo vamos a probar, los enunciados $p\leftrightarrow q$ y $(p \rightarrow q) \wedge (q \rightarrow p)$ se comportan lógicamente idénticos.
+	La elección del símbolo $\leftrightarrow$ es que, como después lo vamos a probar, los enunciados $p\leftrightarrow q$ y $(p \rightarrow q) \wedge (q \rightarrow p)$ se comportan lógicamente idénticos. % TODO: referencia al ejercicio o ejemplo que lo prueba
 \end{description}
 
-De aquí en adelante mantendremos el simbolismo de manera correcta, no debemos asignar interpretaciones, excepto tal vez en ejemplos, las oraciones que aparezcan; de esta manera vamos a obtener generalidad en los resultados, y podremos aislar el razonamiento lógico del semántico.
-Bajo este paradigma, debemos considerar que cada oración \emph{atómica} puede ser, independientemente de otras oraciones atómicas, sus ambos valores de verdad (falso o verdadero.)
+De aquí en adelante mantendremos el simbolismo de manera correcta, no debemos asignar interpretaciones, excepto tal vez en ejemplos, las oraciones que aparezcan; de esta manera vamos a obtener generalidad en los resultados, podremos aislar el razonamiento lógico del semántico; y más importante, nos deshacemos del ruido que aparece con la complejidad de lo concreto.
 
-En el párrafo anterior, nos referimos a una oración atómica si no se puede descomponer propiamente en términos de otras oraciones y los operadores lógicos, y diremos que una oración es \emph{compuesta} en caso contrario.
-Por ejemplo, la oración $r = \neg p \veebar q$ es compuesta, mientras que no necesariamente es el caso de $p,q$, que usualmente se se asumen, cuando no explícitamente sean compuestas, como atómicas.
+Bajo este paradigma, debemos considerar que cada enunciado \emph{atómico} puede ser, independientemente de otros enunciados atómicos, sus ambos valores de verdad (falso o verdadero.)
+
+En el párrafo anterior, nos referimos a un enunciado atómico si no se puede descomponer propiamente en términos de otras oraciones y los operadores lógicos, y diremos que una oración es \emph{compuesta} en caso contrario.
+Por ejemplo, el enunciado $r \equiv \neg p \veebar q$ es compuesto, mientras que no necesariamente es el caso de $p,q$, que usualmente se se asumen, cuando no explícitamente sean compuestas, como atómicas.
 
 Una tabla de verdad de una oración $p$ es una guía que nos permite conocer el comportamiento de oraciones arbitrarias usando fuerza bruta.
-Se analizan todas las combinaciones de los valores de verdad de todas las oraciones atómicas que aparezcan en $p$, usualmente representados en una tabla\footnote{También se suelen representar en diagramas de Venn, pero los evitaremos en este capítulo.}
+Se analizan todas las combinaciones de los valores de verdad de todas las oraciones atómicas que aparezcan en $p$, usualmente representados en una tabla.\footnote{también se suelen representar en diagramas de Venn, pero los evitaremos en este capítulo.}
 \begin{ejm}
-	Encontrar la tabla de verdad de el enunciado $p \wedge \neg q$. Suponga que tanto $p$ como $q$ son atómicas.
-	Hacemos una tabla que contenga una columna para cada oración atómica, y una columna para expresar la oración $p \wedge \neg q$:
+	Encontrar la tabla de verdad de el enunciado $p \wedge \neg q$. Suponga que tanto $p$ como $q$ son atómicos.
+	
+	Hacemos una tabla que contenga una columna para cada enunciado atómico, y una columna para expresar a $p \wedge \neg q$:
 
 	\begin{center}\begin{tabular}{|c|c|c|}
 		\hline
@@ -192,21 +202,21 @@ Para referencias, la tabla de verdad de cada uno de los operadores mencionados a
 \label{tb_tablaVerdadOperadores}
 \end{figure}
 
-Uno suele referirse como tabla de verdad de una oración $p$ como la tabla completa, o únicamente la columna donde aparece la $p$, el contexto nos dirá a cuál nos referimos.
+Uno suele referirse como tabla de verdad de $p$ a la tabla completa, o únicamente la columna donde aparece la $p$, el contexto nos dirá a cuál nos referimos.
 
-Al momento de evaluar expresiones, uno tiene que decidir el orden el orden de evaluación, por ejemplo si consideramos una oración $s=p\rightarrow q \vee r$, ¿cómo se evalúa? bien podría ser $(p\rightarrow q) \vee r$ o bien $p\rightarrow (q \vee r)$ por lo que nuestra expresión original $s$ podría parecer redundante. Una forma de arreglar este problema es forzando agregar un par de paréntesis por cada operación dentro de una oración compuesta; sin embargo, esto nos producirá oraciones cuya cantidad de símbolos crece muy rápidamente, haciéndolo muy difícil entender.
+Al momento de evaluar expresiones, uno tiene que decidir el orden de evaluación, por ejemplo si consideramos una oración $s=p\rightarrow q \vee r$, ¿cómo se evalúa? bien podría ser $(p\rightarrow q) \vee r$ o bien $p\rightarrow (q \vee r)$ por lo que nuestra expresión original $s$ podría parecer redundante. Una forma de arreglar este problema es forzando agregar un par de paréntesis por cada operación dentro de un enunciado compuesto; sin embargo, esto nos producirá enunciados cuya cantidad de símbolos crece muy rápidamente, haciéndolo muy difícil entender.
 
 Otra forma de atacar este problema es establecer una jerarquía de operaciones, de esta forma, en ausencia, o en un mismo ámbito, de paréntesis, la operación con mayor jerarquía debe evaluarse primero.
 Además, en caso de tener más de una operación en un ámbito, podemos evaluar de izquierda a derecha.
 
-Establecemos el orden de operaciones siguiente: negación, conjunción, disyunción, disyunción excluyente, condicional, bicondicional.
+Establecemos el orden de operaciones siguiente (primero que aparece en esta lista, primero que se evalúa, en ausencia de paréntesis): negación, conjunción, disyunción, disyunción excluyente, condicional, bicondicional.
 
-Luego, retomando la oración $s=p\rightarrow q \vee r$, con la discusión anterior, queda eliminada toda redundancia: como la operación $\vee$ tiene prioridad sobre $\rightarrow$, la expresión que define a $s$ es una abreviación para $s=p\rightarrow (q \vee r)$, con los paréntesis implícitos expuestos.
+Luego, retomando el enunciado $s=p\rightarrow q \vee r$, con la discusión anterior, queda eliminada toda redundancia: como la operación $\vee$ tiene prioridad sobre $\rightarrow$, la expresión que define a $s$ es una abreviación para $s=p\rightarrow (q \vee r)$, con los paréntesis implícitos expuestos.
 
 \begin{ejm}
-	Si quisiéramos colocar explícitamente los paréntesis en una oración compuesta como \[\psi = p \rightarrow (q \vee r \veebar q \wedge (p \vee r)) \]
+	Si quisiéramos colocar explícitamente los paréntesis en una oración compuesta como \[p \rightarrow (q \vee r \veebar q \wedge (p \vee r)) \]
 	debería quedarnos como
-	\[\psi = p \rightarrow ((q \vee r) \veebar (q \wedge (p \vee r)))) \]
+	\[p \rightarrow ((q \vee r) \veebar (q \wedge (p \vee r)))) \]
 \end{ejm}
 
 \begin{ejm}
@@ -325,7 +335,7 @@ En este momento nos preocupa cuándo dos enunciados representan exactamente lo m
 Consideremos la siguiente situación: hay dos oraciones $\psi \equiv \neg (p \vee q)$ y $\phi \equiv \neg p \wedge \neg q$ que nos gustaría comparar, lo más evidente que podemos hacer es construir la tabla de verdad de cada una de ellas
 \begin{center}\begin{tabular}{|c|c||c|c|c|c|c|}
 	\hline
-	$p$ & $q$ & $p\vee q$ & $\psi \equiv \neg (p \vee q)$ & $\neg p$ & $\neg q$ & $\psi \equiv \neg p \wedge \neg q$ \\
+	$p$ & $q$ & $p\vee q$ & $\psi \equiv \neg (p \vee q)$ & $\neg p$ & $\neg q$ & $\phi \equiv \neg p \wedge \neg q$ \\
 	\hline\hline
 	F & F & F & V & V & V & V \\ \hline
 	F & V & V & F & V & F & F \\ \hline
@@ -872,7 +882,8 @@ Hemos probado que el conjunto vacío es único. Hay que ponerle nombre
 
 %%%% OPERACIONES INDEXADAS
 
-\section{Relaciones y funciones}
+\chapter{Relaciones y funciones}
+\label{ch_funciones}
 
 %%%% RELACIONES  (Y PAREJAS ORDENADAS)
 
