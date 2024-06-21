@@ -345,7 +345,7 @@ Consideremos la siguiente situación: hay dos oraciones $\psi \equiv \neg (p \ve
 ¡Vaya!, las columnas que corresponden a $\psi$ y a $\phi$ son idénticas; esto implica, que el álgebra de enunciados no es capaz de discernirlas. ¡Debemos considerarlas iguales!
 
 En aras de \emph{definir} esta igualdad,  recordamos que hay un operador cuya función es determinar si dos valores de verdad son iguales o no: el operador bicondicional $\leftrightarrow$.
-Si operamos $\psi$ y $\phi$ con este operador, como sus tablas de verdad son idénticas, entonces la tabla de verdad de $\xi \equiv \psi \leftrightarrow \phi$ debe contener únicamente valores verdaderos %TODO hacer la tabla
+Si operamos $\psi$ y $\phi$ con este operador, como sus tablas de verdad son idénticas, entonces la tabla de verdad de $\xi \equiv \psi \leftrightarrow \phi$ debe contener únicamente valores verdaderos
 \begin{center}\begin{tabular}{|c|c||c|c|c|c|c|c|}
 		\hline
 		$p$ & $q$ & $p\vee q$ & $\psi \equiv \neg (p \vee q)$ & $\neg p$ & $\neg q$ & $\psi \equiv \neg p \wedge \neg q$ & $\xi \equiv \psi \leftrightarrow \phi$ \\
@@ -355,8 +355,8 @@ Si operamos $\psi$ y $\phi$ con este operador, como sus tablas de verdad son id�
 		V & F & V & F & F & V & F & V \\ \hline
 		V & V & V & F & F & F & F & V \\ \hline
 \end{tabular}\end{center}
-
-Ciertamente: $\xi$ es una tautología. Esto nos da una motivación para considerar la siguiente noción de igualdad entre oraciones.
+por lo que concluimos que $\xi$ es una tautología.
+Esto nos da una motivación para considerar la siguiente noción de ``igualdad'' entre oraciones.
 \begin{df}\label{df_equivalenciaLogica}
 	Si $\psi$ y $\phi$ son enunciados, diremos que son \emph{equivalentes}, denotado por $\psi \iff \phi$ cuando el enunciado $\psi \leftrightarrow \phi$ sea una tautología.
 \end{df}
@@ -365,6 +365,10 @@ Ciertamente: $\xi$ es una tautología. Esto nos da una motivación para consider
 	Por la discusión del ejemplo anterior, tenemos que $\neg (p \vee q)$ y $\neg p \wedge \neg q$ son equivalentes, con símbolos se escribe así: \[\neg (p \vee q) \iff \neg p \wedge \neg q.\]
 	A esta equivalencia se le conoce como \emph{ley de De Morgan para la disyunción}
 \end{ejm}
+
+Se debe notar la sutil pero importante diferencia entre los símbolos $\leftrightarrow$ y $\iff$.
+$p\leftrightarrow q$ es un operador valor-a-valor que se evalúa vía valor de verdad entre sus operandos, mientras que el $p\iff q$ sólo tiene sentido si $p$ y $q$ son enunciados.
+Por ejemplo, uno puede evaluar $VERDADERO \leftrightarrow VERDADERO$ que es $VERDADERO$; sin embargo, $VERDADERO \iff VERDADERO$ carece de sentido y en su lugar debería ser $\top \iff \top$ que es $VERDADERO$, ya que $\top$ es un legítimo enunciado, mientras que $VERDADERO$ no.
 
 \begin{ejm}
 	Es fácil, convencerse de que $\neg \neg p \iff p$; basta con hacer la tabla de verdad de $\neg \neg p \leftrightarrow p$ y notar que es una tautología. Esta equivalencia se llama \emph{doble negación}
@@ -424,9 +428,9 @@ Estos teoremas son útiles manipulando equivalencias; ya que, por definición so
 La regla de sustitución nos dice que podemos sustituir cada aparición de una atómica por la oración que nos dé la gana, y aún así seguir obteniendo una tautología.
 Veamos cómo podemos usar la regla de sustitución en un par de ejemplos más:
 \begin{ejm}
-	Considere la regla de DeMorgan de la tabla \ref{tb_EquivalenciasLogicas} que dice $\neg(p \vee q) \iff \neg p \wedge \neg q$. Sustituya la oración atómica $p$ por $p\wedge \neg q$ y obtenemos una nueva equivalencia \[\neg ((p \wedge \neg q) \vee q) \iff \neg (p \wedge \neg q) \wedge \neg q\]
+	Considere la regla de De Morgan de la tabla \ref{tb_EquivalenciasLogicas} que dice $\neg(p \vee q) \iff \neg p \wedge \neg q$. Sustituya la oración atómica $p$ por $p\wedge \neg q$ y obtenemos una nueva equivalencia \[\neg ((p \wedge \neg q) \vee q) \iff \neg (p \wedge \neg q) \wedge \neg q\]
 \end{ejm}
-Juntemos todas las piezas para simplificar\footnote{Entiéndase simplificar como encontrar una expresión equivalente, pero tan fácil de leer como sea posible. Es una noción subjetiva, así que diferentes personas puedan tener una idea diferente de qué es ser legible, pero sin duda un buen inicio es reducir la cantidad de operaciones involucrados.} una expresión
+El siguiente ejemplo muestra cómo juntar todas las piezas para simplificar\footnote{Entiéndase simplificar como encontrar una expresión equivalente, pero tan fácil de leer como sea posible. Es una noción subjetiva, así que diferentes personas puedan tener una idea diferente de qué es ser legible, pero sin duda un buen inicio es reducir la cantidad de operaciones involucrados.} una expresión.
 \begin{ejm}
 	Queremos simplificar la siguiente expresión $\psi = (p\vee q)\wedge \neg(\neg p \wedge q)$. La manera en la que podemos proceder, siendo análogo a simplificar expresiones algebraicas, es empezar de $\psi$, y siguiendo equivalencias otorgadas por la tabla \ref{tb_EquivalenciasLogicas} y modificadas por la regla de sustitución, ir modificando la estructura de $\psi$, paso a paso:
 	\begin{align*}
@@ -436,7 +440,7 @@ Juntemos todas las piezas para simplificar\footnote{Entiéndase simplificar como
 		\\ & \iff p \vee \top & \text{Inversa}
 		\\ & \iff p & \text{Identidad}
 	\end{align*}
-	por lo tanto la oración $\psi$ original es equivalente simplemente a $p$. El lector podrá comprobarlo con una tabla de verdad.
+	por lo tanto la oración $\psi$ original es equivalente simplemente a $p$. No es difícil convencerse de que es cierto usando una tabla de verdad.
 \end{ejm}
 \begin{ejm}
 	Veamos qué tanto se puede simplificar este adefesio: $\neg \left[\neg \left[ (p\vee q)\wedge r\right]\vee \neg q \right]$.
@@ -451,7 +455,7 @@ Juntemos todas las piezas para simplificar\footnote{Entiéndase simplificar como
 	\end{align*}
 \end{ejm}
 Antes de cerrar la sección, hay que mencionar la siguiente notación que usaremos de ahora en adelante:
-La regla de asociatividad de la conjunción $p \wedge (q \wedge r) \iff p \wedge q \wedge r$ nos dice que no importa cuál conjunción operemos primero, el resultado es exactamente el mismo; así que por el bien de una notación legible, trataremos de evitar paréntesis redundantes: lo dejaremos como $p \wedge q \wedge r$. Y lo análogo para la disyunción.
+la regla de asociatividad de la conjunción $p \wedge (q \wedge r) \iff p \wedge q \wedge r$ nos dice que no importa cuál conjunción operemos primero, el resultado es exactamente el mismo; así que por el bien de una notación legible, trataremos de evitar paréntesis redundantes: lo dejaremos como $p \wedge q \wedge r$; lo análogo para la disyunción.\footnote{Este mismo argumento se aplica para cada operación asociativa en matemáticas, incluyendo la suma y el producto numérico.}
 
 \section{Inferencias lógicas}
 \label{sc_inferenciasLogicas}
@@ -493,26 +497,48 @@ Conocemos la equivalencia %TODO: ¿de dónde la conocemos?
 Si $p$ y $q$ son equivalentes implica que el lado izquierdo de la equivalencia \ref{eq_reduccion} es una tautología, por lo que la conjunción del lado derecho también lo es, y la única forma de que esto suceda es que tanto $p \rightarrow q$ y $q\rightarrow q$ sean ambas tautologías; esto es, que $p\implies q$ y $q \implies p$.
 Recíprocamente, si $p \implies q$ y también $q \implies p$ implica que el lado derecho de la equivalencia \ref{eq_reduccion} es una tautología, así que el lado izquierdo también lo es; esto quiere decir que $p\iff q$.
 El siguiente teorema resume esta discusión
-\begin{thm}
+\begin{thm}\label{thm_equivalenciaEquivalencias}
 	Dados dos oraciones $p,q$, son equivalentes
 	\begin{enumerate}
 		\item $p$ y $q$ son equivalentes.
-		\item $p \implies q$ y $q \implies p$
+		\item $p \implies q$ y también $q \implies p$
 	\end{enumerate}
 \end{thm}
-Hay dos cosas importantes que rescatar de este teorema:
+Hay dos cosas importantes que rescatar del teorema \ref{thm_equivalenciaEquivalencias}:
 lo primero es que toda equivalencia es una implicación, en particular toda regla en la tabla de equivalencias lógicas \ref{tb_EquivalenciasLogicas} es una regla de inferencia.
 Lo segundo: tenemos una nueva forma de obtener equivalencias: si queremos mostrar que $p \iff q$, basta probar que $p$ implica $q$ y que $q$ implica $p$; lo cual típicamente es más fácil que hacer una propia equivalencia usando tablas de verdad, o usando las leyes lógicas.
 
 Discutiremos ahora, de manera análoga a las leyes de equivalencia, un conjunto fundamental de inferencias para que usando las reglas de sustitución, podamos hacer inferencias de complejidad arbitraria.
 \begin{description}
 	\item[Modus Ponens] % TODO: terminar ésta regla, y el resto. Deben incluir nombre, símbología y tabular, intuición, demostración y ejemplo de uso. 
+		Ésta es la regla más usada y evidente de inferencia, y es la que se usó como motivación para definir el operador condicional $\rightarrow$.
+		Modus Ponens se refiere a la siguiente inferencias (que se puede comprobar, por ejemplo, con una tabla de verdad o vía equivalencias.)
+		\begin{equation}\label{eq_inferenciaMP}
+			p \wedge (p\rightarrow q) \implies q
+		\end{equation}
+		
+		Como ejemplo de uso considere las siguientes interpretaciones de $p$ y $q$
+		\begin{align*}
+			p &\equiv \text{``Está lloviendo''}\\
+			q &\equiv \text{``Está nublado''}
+		\end{align*}
+		y suponga que efectivamente está lloviendo; además, siempre que llueve seguramente está nublado.
+		Tenemos simbólicamente $p \wedge (p\rightarrow q)$.
+		Por otro lado, debe estar nublado porque si no no podría estar lloviendo: acabamos de inferir $q$ a partir de $p$ y de $p \rightarrow q$.
+		
+		Este ejemplo es básicamente la idea de cómo se argumenta de manera correcta, a través de toda la teoría que nos hemos construido. Más adelante expondremos ejemplos más completos.
+		
+		La ecuación \ref{eq_inferenciaMP}, al igual que toda regla de inferencia que veremos más abajo, se puede escribir de manera \emph{tabular} que facilita la lectura:
+			% TODO: tabular
+		 
 \end{description}
 % TODO: la lista de inferencias en tabla.
 
+% TODO inferencias sobre enunciados cuantificados
+
 \section{Cuantificadores}
 Este lenguaje que hemos desarrollado es sin duda una gran ayuda para desarrollar matemáticas, pero nos va a quedar corta.
-Considere por ejemplo el teorema de pitágoras en su forma trigonométrica: \[cos^2 x + \sin^2 x = 1.\]
+Considere por ejemplo el teorema de Pitágoras en su forma trigonométrica: \[cos^2 x + \sin^2 x = 1.\]
 Bajo la lógica que hemos desarrollado hasta este momento, tendríamos que hacer una lista infinita de igualdades, una para cada valor de $x$ en la ecuación anterior, lo cual es nos causaría muchos problemas;
 en lugar de ello, introducimos un par de símbolos nuevos al lenguaje: \emph{cuantificadores}.
 
