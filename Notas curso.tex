@@ -11,6 +11,7 @@
 \usepackage[spanish]{babel}
 \usepackage[margin=22mm]{geometry}
 \usepackage{hyperref}	% References with links
+\usepackage{caption}   % Rename captions, I dont know why I need a package for this
 
 \usetikzlibrary{shapes.geometric,fit}
 %\usetikzlibrary{patterns,positioning,calc,shapes,arrows, quotes, angles, snakes, automata,backgrounds, petri}
@@ -33,6 +34,9 @@
 \theoremstyle{definition}
 \newtheorem{df}{Definición}[chapter]
 \newtheorem{ejm}{Ejemplo}[chapter]
+
+\captionsetup[table]{name=Tabla}
+\captionsetup[figure]{name=Figura}
 
 % TODO globales:
 % Usar \equiv en lugar de = para definiciones de enunciados (fórmulas)
@@ -174,7 +178,7 @@ Se analizan todas las combinaciones de los valores de verdad de todas las oracio
 
 
 Para referencias, la tabla de verdad de cada uno de los operadores mencionados aparece a continuación
-\begin{figure}[h]
+\begin{table}[h]
 \begin{center}\begin{tabular}{|c|c||c|c|c|c|c|}
 	\hline 
 	$p$& $q$ & $p \wedge q $ & $p \vee q$  & $p \veebar q $ & $p \rightarrow q$ & $p \leftrightarrow q$  \\
@@ -200,7 +204,7 @@ Para referencias, la tabla de verdad de cada uno de los operadores mencionados a
 \end{center}
 \caption{Tabla de verdad de los operadores lógicos. Arriba los operadores binarios, abajo el único operador unario no trivial.}
 \label{tb_tablaVerdadOperadores}
-\end{figure}
+\end{table}
 
 Uno suele referirse como tabla de verdad de $p$ a la tabla completa, o únicamente la columna donde aparece la $p$, el contexto nos dirá a cuál nos referimos.
 
@@ -377,7 +381,7 @@ Por ejemplo, uno puede evaluar $VERDADERO \leftrightarrow VERDADERO$ que es $VER
 La tabla \ref{tb_EquivalenciasLogicas} contiene una lista de las equivalencias lógicas que vamos a considerar como fundamentales\footnote{en realidad muchas de ellas pueden ser probadas del resto, por lo que estrictamente no son fundamentales.}.
 Queremos, de alguna manera, ser capaces de convencernos y demostrar equivalencias sin necesidad de hacer la tabla, para ello vamos a estar invocando estas equivalencias y usándolas como piezas para equivalencias más complejas.
 
-\begin{figure}[h]
+\begin{table}[h]
 \begin{align*}
 	\neg \neg p &\iff p & \text{Doble negación}\\
 	\neg(p \wedge q) &\iff \neg p \vee \neg q & \text{De Morgan}\\
@@ -404,7 +408,7 @@ Queremos, de alguna manera, ser capaces de convencernos y demostrar equivalencia
 \end{align*}
 \caption{Lista de equivalencias lógicas básicas. Todas ellas pueden ser demostradas haciendo la correspondiente tabla de verdad. A la derecha aparece un nombre para cada una de ellas.}
 \label{tb_EquivalenciasLogicas}
-\end{figure}
+\end{table}
 
 \subsection{La regla de substitución}
 Usaremos las equivalencias de la tabla \ref{tb_EquivalenciasLogicas} como fundamento para obtener nuevas equivalencias, según necesitemos.
@@ -510,7 +514,7 @@ Lo segundo: tenemos una nueva forma de obtener equivalencias: si queremos mostra
 
 Discutiremos ahora, de manera análoga a las leyes de equivalencia, un conjunto fundamental de inferencias para que usando las reglas de sustitución, podamos hacer inferencias de complejidad arbitraria.
 \begin{description}
-	\item[Modus Ponens] % TODO: terminar ésta regla, y el resto. Deben incluir nombre, símbología y tabular, intuición, demostración y ejemplo de uso. 
+	\item[Modus Ponens (MP)] % TODO: terminar ésta regla, y el resto. Deben incluir nombre, símbología y tabular, intuición, demostración y ejemplo de uso. 
 		Ésta es la regla más usada y evidente de inferencia, y es la que se usó como motivación para definir el operador condicional $\rightarrow$.
 		Modus Ponens se refiere a la siguiente inferencias (que se puede comprobar, por ejemplo, con una tabla de verdad o vía equivalencias.)
 		\begin{equation}\label{eq_inferenciaMP}
@@ -528,15 +532,151 @@ Discutiremos ahora, de manera análoga a las leyes de equivalencia, un conjunto 
 		
 		Este ejemplo es básicamente la idea de cómo se argumenta de manera correcta, a través de toda la teoría que nos hemos construido. Más adelante expondremos ejemplos más completos.
 		
-		La ecuación \ref{eq_inferenciaMP}, al igual que toda regla de inferencia que veremos más abajo, se puede escribir de manera \emph{tabular} que facilita la lectura:
-			% TODO: tabular
-		 
+		La expresión \ref{eq_inferenciaMP}, al igual que toda regla de inferencia que veremos más abajo, se puede escribir de manera \emph{tabular} que facilita la lectura:
+		\begin{equation*}\begin{split}
+				p \\ p \rightarrow q \\ \hline \therefore q
+		\end{split}	\end{equation*}
+	
+	\item[Ley del silogismo(Sil)] esta ley nos habla de la transitividad del operador $\rightarrow$, esto es, si un enunciado $p$ fuerza indudablemente que ocurra $q$, y ésta implica un enunciado $r$; entonces siempre que ocurra $p$, por transitivdad, ocurre $r$.
+	
+	De manera simbólica puede escribirse esta regla como \[(p \rightarrow q)\wedge (q \rightarrow r) \implies p \rightarrow r,\]
+	o bien,
+		\begin{equation*}\begin{split}
+		p \rightarrow q \\ q \rightarrow r \\ \hline \therefore p \rightarrow r
+\end{split}	\end{equation*}
 \end{description}
-% TODO: la lista de inferencias en tabla.
+Antes de seguir con esta lista deberíamos ver algunos ejemplos
+\begin{ejm}
+	Suponga la siguiente situación:
+	\begin{enumerate}
+		\item Ana hace un pastel.
+		\item Si Ana hace un pastel, no puede practicar con la guitarra.
+		\item Si Ana no practica su guitarra, entonces su padre no le prestará su auto.
+	\end{enumerate}
+	Si hacemos el trabajo de abstraer este contexto para deshacernos del ruido, definamos los enunciados
+	\begin{align*}
+		p &\equiv \text{Ana hace paste}\\
+		q &\equiv \text{Ana practica su guitarra}\\
+		r &\equiv \text{El padre de Ana no le presta su auto a Ana.}
+	\end{align*}
+	% TODO: ¿ya habíamos mencionado antes qué es una premisa, o lo decimos aquí?
+	entonces tenemos tres premisas: $p$, $p \rightarrow \neg q$, $\neg q \rightarrow \neg r$. Deberíamos poder concluir que no le prestó el carro, $\neg r$; puesto que
+	\begin{enumerate}
+		\item Como $p \rightarrow \neg q$ y $\neq q \rightarrow \neq r$ son premisas, usando la ley del silogismo podemos deducir que $p \rightarrow \neg r$.
+		\item Como $p$ es una premisa, y además, como lo acabamos de deducir, $p \rightarrow \neg r$; por Modus Ponens obtenemos $\neg r$.
+	\end{enumerate}
+	Todo este razonamiento lo podemos resumir en una tabla	
+	\begin{align*}
+		\# \, & \text{enunciado} & \text{razón}\\
+		%\cline{1-3}
+		1.& p & \text{premisa} \\
+		2.& p \rightarrow \neg g & \text{premisa}\\
+		3.& \neg q \rightarrow \neg r & \text{premisa}\\
+		4.& p \rightarrow \neg r & \text{Silogismo (2,3)}\\
+		5.& \neg r & \text{Modus Ponens(1,4)}
+	\end{align*}
+	Esta tabla que acabamos de hacer es una \emph{demostración formal} de que
+	$p \wedge (p \rightarrow \neg q) \wedge (\neg q \rightarrow \neg r) \implies \neg r$, lo que significa sin alguna duda, que si hacemos la tabla de verdad que le corresponde, obtendremos una tautología.
+	
+	De aquí en adelante, deberíamos abreviar Modus Ponens simplemente con sus iniciales MP, y a la ley del silogismo (Sil); lo propio para el resto de las reglas que vayamos construyendo
+	
+	Las demostraciones no tienen por qué ser únicas, por ejemplo una solución alternativa podría resumirse en la siguiente tabla.
+	\begin{align*}
+		\# \, & \text{enunciado} & \text{razón}\\
+		1.& p & \text{premisa} \\
+		2.& p \rightarrow \neg g & \text{premisa}\\
+		3.& \neg q \rightarrow \neg r & \text{premisa}\\
+		4.& \neg q & \text{MP(1,2)}\\
+		5.& \neg r & \text{MP(3,4)}
+	\end{align*}
+\end{ejm}
+\begin{description}
+	\item[Modus Tollens (MT)] Ésta es la versión \emph{contrapuesta} de MP, supongamos que sabemos que si está lloviendo, entonces está nublado ($p \rightarrow q$), pero como buenas personas curiosas que somos, volteamos al cielo y vemos que no está nublado ($\neg q$); ¿Podemos contestar si está lloviendo o no?, ¡pues claro! Si estuviera lloviendo entonces por MP deberíamos deducir que está nublado, pero ya vimos que no lo está. Por lo tanto no puede estar lloviendo. 
+	La deducción que hemos hecho es un Modus Tollens, y se puede resumir tabularmente así
+	\begin{equation*}\begin{split}
+		\neg q \\ p \rightarrow q \\ \hline \therefore \neg p
+	\end{split}	\end{equation*}
+\end{description}
 
-% TODO inferencias sobre enunciados cuantificados
+En la tabla \ref{tb_TablaInferencias} se puede ver estas reglas resumidas, junto a otras que no son explicadas aquí pero se puede demostrar fácilmente haciendo la tabla de verdad, o invocando los otras reglas. 
 
+\begin{table}[h] %TODO ¿en página completa?
+	\caption{Lista de leyes de inferencia con sus nombres largos y cortos}
+	\label{tb_TablaInferencias}
+	\centering
+\begin{tabular}{|c|c|}
+	\hline
+	Regla de inferencia & Nombre de la regla \\
+	\hline
+	$\begin{aligned}
+		p \\
+		p \rightarrow q \\ 
+		\hline \therefore q
+	\end{aligned}$ & Modus ponens(MP) \\
+	\hline
+	$\begin{aligned} 
+		p \rightarrow q \\
+		q \rightarrow r \\
+		\hline \therefore p \rightarrow r
+	\end{aligned}$
+	&  Ley del silogismo (Sil) \\
+	\hline
+	$\begin{aligned} 
+		p \rightarrow q \\ \neg q \\ \hline \therefore \neg p
+	\end{aligned}$
+	&  Modus tollens (MT)\\
+	\hline
+	$\begin{aligned} 
+		p \\ q \\ \hline \therefore p \wedge q
+	\end{aligned}$
+	&  Regla de conjunción (Con) \\
+	\hline
+	$\begin{aligned} 
+		p \vee q \\ \neg p \\ \hline \therefore q
+	\end{aligned}$
+	&  Regla del silogismo disyuntivo (SD)\\
+	\hline
+	$\begin{aligned} 
+		\neg p \rightarrow \bot \\ \hline \therefore p
+	\end{aligned}$
+	& Regla de contradicción (!) \\
+	\hline
+	$\begin{aligned} 
+		p\wedge q \\\hline  \therefore p
+	\end{aligned}$
+	& Regla de simplificación conjuntiva (SC)  \\
+	\hline
+	$\begin{aligned} 
+		p \\ \hline \therefore p \vee q
+	\end{aligned}$
+	& Regla de amplificación disyuntiva (AD)  \\
+	\hline
+	$\begin{aligned} 
+		p \wedge q \\ p \rightarrow (q \rightarrow r) \\ \hline \therefore r
+	\end{aligned}$
+	& Regla de la prueba condicional (PC)  \\
+	\hline
+	$\begin{aligned} 
+		p \rightarrow r \\ q \rightarrow r \\ \hline \therefore (p\vee q) \rightarrow r 
+	\end{aligned}$
+	& Regla de la prueba por casos (Cas) \\
+	\hline
+	$\begin{aligned} 
+		p \rightarrow q \\ r \rightarrow s \\ p \vee r \\ \hline \therefore q \vee s
+	\end{aligned}$
+	& Regla del dilema constructivo (DC) \\
+	\hline
+	$\begin{aligned} 
+		p \rightarrow q \\ r \rightarrow s \\ \neg q \vee \neg s \\ \hline \therefore \neg p \vee \neg r
+	\end{aligned}$
+	& Regla del dilema destructivo (DD) \\
+	\hline
+\end{tabular}
+\end{table}
+
+% TODO: ejemlos de demostraciones
 \section{Cuantificadores}
+% TODO inferencias sobre enunciados cuantificados
 Este lenguaje que hemos desarrollado es sin duda una gran ayuda para desarrollar matemáticas, pero nos va a quedar corta.
 Considere por ejemplo el teorema de Pitágoras en su forma trigonométrica: \[cos^2 x + \sin^2 x = 1.\]
 Bajo la lógica que hemos desarrollado hasta este momento, tendríamos que hacer una lista infinita de igualdades, una para cada valor de $x$ en la ecuación anterior, lo cual es nos causaría muchos problemas;
