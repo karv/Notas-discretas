@@ -58,10 +58,9 @@ Empezamos esta unidad definiendo el objeto de estudio de este capítulo.
 		(a veces llamado oración) es una expresión declarativa cuyo valor de verdad está determinado.
 \end{df}
 
-% TODO: cambiar oración por enunciado
 %\section{Lógica de enunciados}
 Por ejemplo, expresiones del tipo ``Si mañana llueve, voy a faltar a clase'' o ``María sabe inglés y francés'' son oraciones; también, más al contexto de las matemáticas ``$2+2=4$'' o bien ``$3^2 > 20$'' también lo son.
-Expresiones como ``¿Qué hora es?'', ``¡Qué calor!'' o ``Haz tu tarea'' no son oraciones, ya que no son expresiones declarativas.
+Expresiones como ``¿Qué hora es?'', ``¡Qué calor!'' o ``Haz tu tarea'' no son enunciados, ya que no son expresiones declarativas.
 
 Aquí estamos usando comillas dobles para separar el contenido (lo que este trabajo dice) del objeto (lo que el objeto dice), y lo seguiremos usando cuando pueda haber ambigüedad.
 
@@ -72,7 +71,7 @@ Como en todas las matemáticas, el contenido emerge cuando miramos cómo interac
 \begin{df}
 	Un operador\footnote{a veces llamado conector} lógico es una función\footnote %TODO
 	{esto es aproximadamente, una regla para construir enunciados a partir de otros, profundizaremos más adelante en el capítulo \ref{ch_funciones}}
-	que a cada oración, o pareja de ellos, les asigna alguna otra.
+	que a cada enunciado, o pareja de ellos, les asigna alguna otra.
 \end{df}
 
 Con el fin de construir operadores lógicos, haremos uso de \emph{tablas de verdad}, es decir, una tabla en la que se analice el comportamiento de enunciado en todos los posibles casos que puedan ocurrir, dada una cantidad de enunciados simples. En la tabla \ref{tb_tablaVerdadOperadores} se pueden ver las tablas de verdad de los operadores que vamos a definir a continuación.
@@ -82,7 +81,7 @@ Procedemos a hacer una lista de los operadores que nos interesan.
 	\item [Negación ($\neg$)]  % TODO: ¿No se ve horrible agregar aquí los símbolos de los operadores? Se ve bien
 	Si $p$ es un enunciado, su negación $\neg p$ (no $p$) alterna el valor de verdad de $p$; esto es, $\neg p$ es falsa sólo cuando $p$ es verdadera.
 	
-	Por ejemplo, si $p$ representa ``$2+2=5$", $\neg p$ es la oración que afirma ``no es cierto que $2+2=2$", o bien ``$2+2\neq 5$".
+	Por ejemplo, si $p$ representa ``$2+2=5$", $\neg p$ es el enunciado que afirma ``no es cierto que $2+2=2$", o bien ``$2+2\neq 5$".
 
 	\item[Conjunción ($\wedge$)] El operador binario $\wedge$ asigna a cada par de enunciados $p,q$ un nuevo enunciado $p \wedge q$ ($p$ y $q$) que es verdadera exactamente cuando los dos operandos también lo son.
 
@@ -131,15 +130,15 @@ Procedemos a hacer una lista de los operadores que nos interesan.
 	La elección del símbolo $\leftrightarrow$ es que, como después lo vamos a probar, los enunciados $p\leftrightarrow q$ y $(p \rightarrow q) \wedge (q \rightarrow p)$ se comportan lógicamente idénticos. % TODO: referencia al ejercicio o ejemplo que lo prueba
 \end{description}
 
-De aquí en adelante mantendremos el simbolismo de manera correcta, no debemos asignar interpretaciones, excepto tal vez en ejemplos, las oraciones que aparezcan; de esta manera vamos a obtener generalidad en los resultados, podremos aislar el razonamiento lógico del semántico; y más importante, nos deshacemos del ruido que aparece con la complejidad de lo concreto.
+De aquí en adelante mantendremos el simbolismo de manera correcta, no debemos asignar interpretaciones, excepto tal vez en ejemplos, a los enunciados que aparezcan; de esta manera vamos a obtener generalidad en los resultados, podremos aislar el razonamiento lógico del semántico; y más importante, nos deshacemos del ruido que aparece con la complejidad de lo concreto.
 
 Bajo este paradigma, debemos considerar que cada enunciado \emph{atómico} puede ser, independientemente de otros enunciados atómicos, sus ambos valores de verdad (falso o verdadero.)
 
-En el párrafo anterior, nos referimos a un enunciado atómico si no se puede descomponer propiamente en términos de otras oraciones y los operadores lógicos, y diremos que una oración es \emph{compuesta} en caso contrario.
-Por ejemplo, el enunciado $r \equiv \neg p \veebar q$ es compuesto, mientras que no necesariamente es el caso de $p,q$, que usualmente se se asumen, cuando no explícitamente sean compuestas, como atómicas.
+En el párrafo anterior, nos referimos como enunciado atómico a los que no se puede descomponer propiamente en términos de otros enunciados y de los operadores lógicos, y diremos que un enunciado es \emph{compuesto} en caso contrario.
+Por ejemplo, el enunciado $r \equiv \neg p \veebar q$ es compuesto, mientras que no necesariamente es el caso de $p,q$, que usualmente se asumen, cuando no explícitamente sean compuestas, como atómicas.
 
-Una tabla de verdad de una oración $p$ es una guía que nos permite conocer el comportamiento de oraciones arbitrarias usando fuerza bruta.
-Se analizan todas las combinaciones de los valores de verdad de todas las oraciones atómicas que aparezcan en $p$, usualmente representados en una tabla.\footnote{también se suelen representar en diagramas de Venn, pero los evitaremos en este capítulo.}
+Una tabla de verdad de un enunciado $p$ es una guía que nos permite conocer el comportamiento de enunciados arbitrarios usando fuerza bruta.
+Se analizan todas las combinaciones de los valores de verdad de todas sus enunciados atómicos que aparezcan en $p$, usualmente representados en una tabla.\footnote{también se suelen representar en diagramas de Venn, pero los evitaremos en este capítulo.}
 \begin{ejm}
 	Encontrar la tabla de verdad de el enunciado $p \wedge \neg q$. Suponga que tanto $p$ como $q$ son atómicos.
 	
@@ -160,7 +159,7 @@ Se analizan todas las combinaciones de los valores de verdad de todas las oracio
 	\end{tabular}\end{center}
 	donde los caracteres F, V representan los valores de verdad falso y verdadero.
 	
-	Se suele hacer, con el fin de evitar errores, usar una columna por cada \emph{sub-oración} implicada, por lo que la tabla anterior debería quedar así
+	Se suele hacer, con el fin de evitar errores, usar una columna por cada \emph{sub-enunciado} implicado, por lo que la tabla anterior debería quedar así
 	\begin{center}\begin{tabular}{|c|c|c|c|}
 		\hline
 		$p$& $q$ & $\neg q$ &$p \wedge \neg q$ \\
@@ -208,7 +207,7 @@ Para referencias, la tabla de verdad de cada uno de los operadores mencionados a
 
 Uno suele referirse como tabla de verdad de $p$ a la tabla completa, o únicamente la columna donde aparece la $p$, el contexto nos dirá a cuál nos referimos.
 
-Al momento de evaluar expresiones, uno tiene que decidir el orden de evaluación, por ejemplo si consideramos una oración $s=p\rightarrow q \vee r$, ¿cómo se evalúa? bien podría ser $(p\rightarrow q) \vee r$ o bien $p\rightarrow (q \vee r)$ por lo que nuestra expresión original $s$ podría parecer redundante. Una forma de arreglar este problema es forzando agregar un par de paréntesis por cada operación dentro de un enunciado compuesto; sin embargo, esto nos producirá enunciados cuya cantidad de símbolos crece muy rápidamente, haciéndolo muy difícil entender.
+Al momento de evaluar expresiones, uno tiene que decidir el orden de evaluación, por ejemplo si consideramos un enunciado $s=p\rightarrow q \vee r$, ¿cómo se evalúa? bien podría ser $(p\rightarrow q) \vee r$ o bien $p\rightarrow (q \vee r)$ por lo que nuestra expresión original $s$ podría parecer redundante. Una forma de arreglar este problema es forzando agregar un par de paréntesis por cada operación dentro de un enunciado compuesto; sin embargo, esto nos producirá enunciados cuya cantidad de símbolos crece muy rápidamente, haciéndolo muy difícil entender.
 
 Otra forma de atacar este problema es establecer una jerarquía de operaciones, de esta forma, en ausencia, o en un mismo ámbito, de paréntesis, la operación con mayor jerarquía debe evaluarse primero.
 Además, en caso de tener más de una operación en un ámbito, podemos evaluar de izquierda a derecha.
@@ -218,7 +217,7 @@ Establecemos el orden de operaciones siguiente (primero que aparece en esta list
 Luego, retomando el enunciado $s=p\rightarrow q \vee r$, con la discusión anterior, queda eliminada toda redundancia: como la operación $\vee$ tiene prioridad sobre $\rightarrow$, la expresión que define a $s$ es una abreviación para $s=p\rightarrow (q \vee r)$, con los paréntesis implícitos expuestos.
 
 \begin{ejm}
-	Si quisiéramos colocar explícitamente los paréntesis en una oración compuesta como \[p \rightarrow (q \vee r \veebar q \wedge (p \vee r)) \]
+	Si quisiéramos colocar explícitamente los paréntesis en un enunciado compuesto como \[p \rightarrow (q \vee r \veebar q \wedge (p \vee r)) \]
 	debería quedarnos como
 	\[p \rightarrow ((q \vee r) \veebar (q \wedge (p \vee r)))) \]
 \end{ejm}
@@ -275,11 +274,11 @@ Usar tablas de verdad para analizar el comportamiento de algún enunciado puede 
 \end{tabular}\end{center}\end{figure}
 \end{ejm}
 
-Como se puede ver el álgebra de operadores de una oración arbitraria queda totalmente determinada por su tabla de verdad, dentro de ella hay dos casos extremos que nos dan cierto interés: cuando siempre es falsa y cuando siempre es verdadera. Esto nos motiva a dar la siguiente definición.
+Como se puede ver el álgebra de operadores de un enunciado arbitrario queda totalmente determinada por su tabla de verdad, dentro de ella hay dos casos extremos que nos dan cierto interés: cuando siempre es falsa y cuando siempre es verdadera. Esto nos motiva a dar la siguiente definición.
 
 \begin{df}
-	Si $p$ es una oración, diremos que $p$ es una \emph{tautología} si su columna en una tabla de verdad está compuesto únicamente de valores verdaderos.
-	Y si por el contrario, si $p$ tiene una tabla de verdad que consiste únicamente de valores falsos, se dice que $p$ es una contradicción.
+	Si $p$ es un enunciado, diremos que $p$ es una \emph{tautología} si su columna en una tabla de verdad está compuesto únicamente de valores $VERDADERO$.
+	Y si por el contrario, si $p$ tiene una tabla de verdad que consiste únicamente de valores $FALSO$, se dice que $p$ es una \emph{contradicción}.
 \end{df}
 
 \begin{ejm}
@@ -317,12 +316,12 @@ Va a ser común que tengamos que hacer referencia a una tautología y a una cont
 	Los símbolos $\top$ y $\bot$ representan enunciados que se interpretan como tautología y contradicción, respectivamente.
 \end{df}
 Ciertamente, en principio bien podrían existir más de una tautología, o contradicción: $p\vee \neg p$ y $q \wedge (p \rightarrow q)$ son ambas tautologías, por lo que pareciera que los símbolos $\top$ y $\bot$ son ambiguos.
-¡No hay de qué preocuparse! Cuando definamos, un poco más abajo en la siguiente sección, la igualdad entre oraciones (se llaman equivalencias lógicas) será claro que la tautología y la contradicción son únicas. % TODO: hacer justamente esto
+¡No hay de qué preocuparse! Cuando definamos, un poco más abajo en la siguiente sección, la igualdad entre enunciados (se llaman equivalencias lógicas) será claro que la tautología y la contradicción son únicas. % TODO: hacer justamente esto
 
 Luego, de ahora en adelante podrán aparecer los símbolos $\bot$ y $\top$ como parte de nuestros enunciados, como sugiere el siguiente ejemplo.
 
 \begin{ejm}
-	Considere la oración $\psi \equiv \top \vee (q \veebar p)$. Uno puede mostrar que es una tautología haciendo una tabla de verdad como la siguiente.
+	Considere el enunciado $\psi \equiv \top \vee (q \veebar p)$. Uno puede mostrar que es una tautología haciendo una tabla de verdad como la siguiente.
 	\begin{center}\begin{tabular}{|c|c||c|c|}
 		\hline
 		$p$ & $q$ & $q\veebar p$ & $\top \vee q\veebar p$ \\
@@ -336,7 +335,7 @@ Luego, de ahora en adelante podrán aparecer los símbolos $\bot$ y $\top$ como 
 
 \section{Equivalencias lógicas}
 En este momento nos preocupa cuándo dos enunciados representan exactamente lo mismo.
-Consideremos la siguiente situación: hay dos oraciones $\psi \equiv \neg (p \vee q)$ y $\phi \equiv \neg p \wedge \neg q$ que nos gustaría comparar, lo más evidente que podemos hacer es construir la tabla de verdad de cada una de ellas
+Consideremos la siguiente situación: hay dos enunciados $\psi \equiv \neg (p \vee q)$ y $\phi \equiv \neg p \wedge \neg q$ que nos gustaría comparar, lo más evidente que podemos hacer es construir la tabla de verdad de cada una de ellas
 \begin{center}\begin{tabular}{|c|c||c|c|c|c|c|}
 	\hline
 	$p$ & $q$ & $p\vee q$ & $\psi \equiv \neg (p \vee q)$ & $\neg p$ & $\neg q$ & $\phi \equiv \neg p \wedge \neg q$ \\
@@ -360,7 +359,7 @@ Si operamos $\psi$ y $\phi$ con este operador, como sus tablas de verdad son id�
 		V & V & V & F & F & F & F & V \\ \hline
 \end{tabular}\end{center}
 por lo que concluimos que $\xi$ es una tautología.
-Esto nos da una motivación para considerar la siguiente noción de ``igualdad'' entre oraciones.
+Esto nos da una motivación para considerar la siguiente noción de ``igualdad'' entre enunciados.
 \begin{df}\label{df_equivalenciaLogica}
 	Si $\psi$ y $\phi$ son enunciados, diremos que son \emph{equivalentes}, denotado por $\psi \iff \phi$ cuando el enunciado $\psi \leftrightarrow \phi$ sea una tautología.
 \end{df}
@@ -414,25 +413,25 @@ Queremos, de alguna manera, ser capaces de convencernos y demostrar equivalencia
 Usaremos las equivalencias de la tabla \ref{tb_EquivalenciasLogicas} como fundamento para obtener nuevas equivalencias, según necesitemos.
 Para ello requerimos alguna máquina que nos trasforme una equivalencia ya conocida en algo nuevo.
 
-Construyamos un ejemplo sobre lo que queremos hacer: la ley de la doble negación establece que $\neg \neg p \iff p$ sin tener interpretación sobre la oración $p$.
-Cuando definimos una tabla de verdad, tuvimos el cuidado de analizar cada uno de las combinaciones que se pueden formar vía las oraciones atómicas, y definimos equivalencia para que en cada una de las combinaciones los valores de verdad, en este caso de $\neg \neg p$ y $p$ coincidan.
-Entonces, si pierdo generalidad, cambiando la interpretación de $p$ por otra oración, digamos $r \vee s$, la equivalencia debe mantenerse, y obtenemos la siguiente equivalencia: \[\neg \neg (r \vee s) \iff r \vee s. \]
+Construyamos un ejemplo sobre lo que queremos hacer: la ley de la doble negación establece que $\neg \neg p \iff p$ sin tener interpretación sobre el enunciado $p$.
+Cuando definimos una tabla de verdad, tuvimos el cuidado de analizar cada uno de las combinaciones que se pueden formar vía sus enunciados atómicos, y definimos equivalencia para que en cada una de las combinaciones los valores de verdad, en este caso de $\neg \neg p$ y $p$ coincidan.
+Entonces, si pierdo generalidad, cambiando la interpretación de $p$ por otro enunciado, digamos $r \vee s$, la equivalencia debe mantenerse, y obtenemos la siguiente equivalencia: \[\neg \neg (r \vee s) \iff r \vee s. \]
 ¡Enhorabuena! ¡Tenemos nueva equivalencia!
 
 Este proceso cambiar la interpretación de un símbolo atómico por cualquier enunciado se llama \emph{sustitución}, y será la máquina para producir equivalencias que buscábamos.
 A los siguientes dos teoremas, en conjunto, le podemos llamar \emph{regla de sustitución}
 \begin{thm}[Regla de sustitución 1]
-	Si $\psi$ es una tautología, y $p$ una sub-oración atómica de $\psi$. Defina $\psi^\prime$ como el resultado de reemplazar en $\psi$ cada aparición de $p$ por un mismo enunciado (no necesariamente atómica) $q$. Entonces $\psi^\prime$ es también una tautología.
+	Si $\psi$ es una tautología, y $p$ un sub-enunciado atómico de $\psi$. Defina $\psi^\prime$ como el resultado de reemplazar en $\psi$ cada aparición de $p$ por un mismo enunciado (no necesariamente atómica) $q$. Entonces $\psi^\prime$ es también una tautología.
 \end{thm}
 \begin{thm}[Regla de sustitución 2]
 	Si $\psi$ es un enunciado, y $q$ un sub-enunciado de $\psi$ que es equivalente a $r$, entonces si consideramos $\psi^\prime$ como el resultado de reemplazar en $\psi$ una aparición de $q$ por $r$, entonces $\psi \iff \psi^\prime$.
 \end{thm}
 
 Estos teoremas son útiles manipulando equivalencias; ya que, por definición son tautologías de la forma $p\leftrightarrow q$.
-La regla de sustitución nos dice que podemos sustituir cada aparición de una atómica por la oración que nos dé la gana, y aún así seguir obteniendo una tautología.
+La regla de sustitución nos dice que podemos sustituir cada aparición de un enunciado atómico por el enunciado que nos dé la gana, y aún así seguir obteniendo una tautología.
 Veamos cómo podemos usar la regla de sustitución en un par de ejemplos más:
 \begin{ejm}
-	Considere la regla de De Morgan de la tabla \ref{tb_EquivalenciasLogicas} que dice $\neg(p \vee q) \iff \neg p \wedge \neg q$. Sustituya la oración atómica $p$ por $p\wedge \neg q$ y obtenemos una nueva equivalencia \[\neg ((p \wedge \neg q) \vee q) \iff \neg (p \wedge \neg q) \wedge \neg q\]
+	Considere la regla de De Morgan de la tabla \ref{tb_EquivalenciasLogicas} que dice $\neg(p \vee q) \iff \neg p \wedge \neg q$. Sustituya el enunciado atómico $p$ por $p\wedge \neg q$ y obtenemos una nueva equivalencia \[\neg ((p \wedge \neg q) \vee q) \iff \neg (p \wedge \neg q) \wedge \neg q\]
 \end{ejm}
 El siguiente ejemplo muestra cómo juntar todas las piezas para simplificar\footnote{Entiéndase simplificar como encontrar una expresión equivalente, pero tan fácil de leer como sea posible. Es una noción subjetiva, así que diferentes personas puedan tener una idea diferente de qué es ser legible, pero sin duda un buen inicio es reducir la cantidad de operaciones involucrados.} una expresión.
 \begin{ejm}
@@ -444,7 +443,7 @@ El siguiente ejemplo muestra cómo juntar todas las piezas para simplificar\foot
 		\\ & \iff p \vee \top & \text{Inversa}
 		\\ & \iff p & \text{Identidad}
 	\end{align*}
-	por lo tanto la oración $\psi$ original es equivalente simplemente a $p$. No es difícil convencerse de que es cierto usando una tabla de verdad.
+	por lo tanto el enunciado $\psi$ original es equivalente simplemente a $p$. No es difícil convencerse de que es cierto usando una tabla de verdad.
 \end{ejm}
 \begin{ejm}
 	Veamos qué tanto se puede simplificar este adefesio: $\neg \left[\neg \left[ (p\vee q)\wedge r\right]\vee \neg q \right]$.
@@ -473,9 +472,9 @@ Construiremos las reglas de la lógica que son verdaderamente válidas (evitando
 
 De manera análoga a como definimos equivalencia lógica en la definición \ref{df_equivalenciaLogica}, extraigamos del ejemplo anterior de Juan, la forma:
 
-Sea $p$ la oración ``Juan repasa sus apuntes de matemáticas" y $q$ que sea ``Alguien invita a Juan a jugar".
-Hay dos oraciones que nos da la situación, que lo podemos escribir simbólicamente: $\neg q\rightarrow p$ y también $\neg q$.
-Recordemos que el propósito del operador condicional es determinar cuándo es verdad que si ocurren algunas oraciones (condiciones) se cumple alguna otra oración (conclusión) que es justamente lo que queremos, de hecho queremos que eso suceda siempre, y por supuesto, que suceda siempre se llama tautología.
+Sea $p$ el enunciado ``Juan repasa sus apuntes de matemáticas" y $q$ que sea ``Alguien invita a Juan a jugar".
+Hay dos enunciados que nos da la situación, que lo podemos escribir simbólicamente: $\neg q\rightarrow p$ y también $\neg q$.
+Recordemos que el propósito del operador condicional es determinar cuándo es verdad que si ocurren algunos enunciados (condiciones) se cumple algún otro enunciado (conclusión) que es justamente lo que queremos, de hecho queremos que eso suceda siempre, y por supuesto, que suceda siempre se llama tautología.
 
 La premisa es que suceden dos cosas que podemos juntar con una conjunción: $(\neg q \rightarrow p) \wedge \neg q$ y la conclusión debería ser $p$. Pues hagamos la tabla de verdad de $(\neg q \rightarrow p) \wedge \neg q \rightarrow p$:
 \begin{center}\begin{tabular}{|c|c||c|c|c|c|c|}
@@ -491,18 +490,18 @@ La premisa es que suceden dos cosas que podemos juntar con una conjunción: $(\n
 
 Podemos definir inferencia basados en el ejemplo anterior
 \begin{df}
-	Si $\psi$ y $\phi$ son dos oraciones, diremos que $\psi$ implica $\phi$, denotado por $\psi \implies \phi$ cuando la oración $\psi \rightarrow \phi$ sea una tautología. 
+	Si $\psi$ y $\phi$ son dos enunciados, diremos que $\psi$ implica $\phi$, denotado por $\psi \implies \phi$ cuando el enunciado $\psi \rightarrow \phi$ sea una tautología. 
 \end{df}
 Hay hacer la siguiente observación importante. 
 Conocemos la equivalencia %TODO: ¿de dónde la conocemos?
 \begin{equation}\label{eq_reduccion}
 	p \leftrightarrow q \iff (p \rightarrow q) \wedge (q \rightarrow p).
 \end{equation}
-Si $p$ y $q$ son equivalentes implica que el lado izquierdo de la equivalencia \ref{eq_reduccion} es una tautología, por lo que la conjunción del lado derecho también lo es, y la única forma de que esto suceda es que tanto $p \rightarrow q$ y $q\rightarrow q$ sean ambas tautologías; esto es, que $p\implies q$ y $q \implies p$.
+Si $p$ y $q$ son equivalentes entonces el lado izquierdo de la equivalencia \ref{eq_reduccion} es una tautología, por lo que la conjunción del lado derecho también lo es, y la única forma de que esto suceda es que tanto $p \rightarrow q$ y $q\rightarrow q$ sean ambas tautologías; esto es, que $p\implies q$ y $q \implies p$.
 Recíprocamente, si $p \implies q$ y también $q \implies p$ implica que el lado derecho de la equivalencia \ref{eq_reduccion} es una tautología, así que el lado izquierdo también lo es; esto quiere decir que $p\iff q$.
 El siguiente teorema resume esta discusión
 \begin{thm}\label{thm_equivalenciaEquivalencias}
-	Dados dos oraciones $p,q$, son equivalentes
+	Dados dos enunciados $p,q$, son equivalentes
 	\begin{enumerate}
 		\item $p$ y $q$ son equivalentes.
 		\item $p \implies q$ y también $q \implies p$
@@ -555,14 +554,14 @@ Antes de seguir con esta lista deberíamos ver algunos ejemplos
 	\end{enumerate}
 	Si hacemos el trabajo de abstraer este contexto para deshacernos del ruido, definamos los enunciados
 	\begin{align*}
-		p &\equiv \text{Ana hace paste}\\
+		p &\equiv \text{Ana hace pastel}\\
 		q &\equiv \text{Ana practica su guitarra}\\
-		r &\equiv \text{El padre de Ana no le presta su auto a Ana.}
+		r &\equiv \text{El padre de Ana le presta su auto a Ana.}
 	\end{align*}
 	% TODO: ¿ya habíamos mencionado antes qué es una premisa, o lo decimos aquí?
 	entonces tenemos tres premisas: $p$, $p \rightarrow \neg q$, $\neg q \rightarrow \neg r$. Deberíamos poder concluir que no le prestó el carro, $\neg r$; puesto que
 	\begin{enumerate}
-		\item Como $p \rightarrow \neg q$ y $\neq q \rightarrow \neq r$ son premisas, usando la ley del silogismo podemos deducir que $p \rightarrow \neg r$.
+		\item Como $p \rightarrow \neg q$ y $\neg q \rightarrow \neg r$ son premisas, usando la ley del silogismo podemos deducir que $p \rightarrow \neg r$.
 		\item Como $p$ es una premisa, y además, como lo acabamos de deducir, $p \rightarrow \neg r$; por Modus Ponens obtenemos $\neg r$.
 	\end{enumerate}
 	Todo este razonamiento lo podemos resumir en una tabla	
@@ -599,6 +598,35 @@ Antes de seguir con esta lista deberíamos ver algunos ejemplos
 \end{description}
 
 En la tabla \ref{tb_TablaInferencias} se puede ver estas reglas resumidas, junto a otras que no son explicadas aquí pero se puede demostrar fácilmente haciendo la tabla de verdad, o invocando los otras reglas. 
+
+Hagamos algunos ejemplos variados.
+
+\begin{ejm}
+	Para demostrar lógicamente que 
+\begin{equation*}\begin{split}
+		p \rightarrow r \\ 
+		r \rightarrow s \\ 
+		t \vee \neg s \\
+		\neg t \vee u \\
+		\neg u \\
+		\hline \therefore \neg p
+\end{split}	\end{equation*}
+podemos proceder como en los ejemplos pasados
+	\begin{align*}
+		\# \, & \text{enunciado} & \text{razón}\\
+		1.& p \rightarrow r & \text{premisa} \\
+		2.& r \rightarrow s & \text{premisa}\\
+		3.& p \rightarrow s & \text{Sil(1,2)}\\
+		4.& \neg t \vee u & \text{premisa}\\
+		5.& t \rightarrow u & \text{equivalencia(4)}\\
+		6.& \neg u & \text{premisa}\\
+		7.& \neg t & \text{MT(6,5)}\\
+		8.& t \vee \neg s & \text{premisa}\\
+		9.& \neg t \rightarrow \neg s & \text{equivalencia(8)}\\
+		10.&
+	\end{align*}
+\end{ejm}
+
 
 \begin{table}[h] %TODO ¿en página completa?
 	\caption{Lista de leyes de inferencia con sus nombres largos y cortos}
@@ -674,7 +702,6 @@ En la tabla \ref{tb_TablaInferencias} se puede ver estas reglas resumidas, junto
 \end{tabular}
 \end{table}
 
-% TODO: ejemlos de demostraciones
 \section{Cuantificadores}
 % TODO inferencias sobre enunciados cuantificados
 Este lenguaje que hemos desarrollado es sin duda una gran ayuda para desarrollar matemáticas, pero nos va a quedar corta.
@@ -683,15 +710,15 @@ Bajo la lógica que hemos desarrollado hasta este momento, tendríamos que hacer
 en lugar de ello, introducimos un par de símbolos nuevos al lenguaje: \emph{cuantificadores}.
 
 \begin{df}
-	Un \emph{enunciado abierto} es una expresión declarativa con términos no declarados (variables libres) de tal manera que al sustituirlos por objetos de algún tipo específico se convierten en oraciones.
+	Un \emph{enunciado abierto} es una expresión declarativa con términos no declarados (variables libres) de tal manera que al sustituirlos por objetos de algún tipo específico se convierte en enunciado.
 \end{df}
 Más adelante daremos una definición más satisfactoria, por ahora quedémonos con una correcta intuición.
 \begin{ejm}
 	La expresión $p(x) = cos^2 x + \sin^2 x = 1$ es un enunciado abierto cuya única variable libre es $x$.
-	Si se sustituye $x$ por cualquier objeto (número en este contexto) se convierte en una oración, algo así como \[p(\pi) = \cos^2(\pi) + \sin^2(\pi) = 1\]
+	Si se sustituye $x$ por cualquier objeto (número en este contexto) se convierte en un enunciado, algo así como \[p(\pi) \equiv \cos^2(\pi) + \sin^2(\pi) = 1\]
 	que uno se puede convencer que es un enunciado, que es verdadero.
 	
-	Nótese que el enunciado abierto $p(x)$ no tiene asignado un valor de verdad ya que no es un enunciado: la oración \[\cos^2 x + \sin^2 x = 1\]
+	Nótese que el enunciado abierto $p(x)$ no tiene asignado un valor de verdad ya que no es un enunciado: la expresión \[\cos^2 x + \sin^2 x = 1\]
 	carece de significado.
 \end{ejm}
 \begin{ejm}
@@ -705,10 +732,10 @@ Nos serán de utilidad los enunciados con exactamente una variable libre.
 	Un \emph{predicado} es un enunciado abierto con exactamente una variable libre. 
 \end{df}
 De nuevo consideramos el predicado $p(x) = \cos^2 x + \sin^2 x = 1$, en un curso de trigonometría se nos enseñan que esa igualdad es cierta para cualquier número $x$; o sea se nos enseña que
-\[q = \cos^2 x + \sin^2 x = 1\quad \text{para cualquier } x \]
+\[q \equiv \cos^2 x + \sin^2 x = 1,\quad \text{para cualquier } x \]
 Introducimos un símbolo ``$\forall$" que se interprete justamente así: ``para cualquier", así que la definición de $q$ de arriba quedaría
 \[q = \cos^2 x + \sin^2 x = 1\quad \forall x\]
-y un último retoque: vamos a hacer que se ``declare la variable" antes de usarla, y nos quedaría así:
+y un último retoque: vamos a hacer que se ``declare la variable'' antes de usarla, y nos quedaría así:
 \begin{equation}
 	\forall x\, \cos^2 x + \sin^2 x = 1;
 \end{equation}
@@ -724,23 +751,24 @@ El enunciado $\forall x\, p(x)$ se suele leer como ``para toda $x$, $p(x)$", aun
 Consideremos la ecuación cuadrática 
 \[x^2 -4x + 3 = 0.\] % (x-1)(x-3)
 Es muy probable que el lector le esté buscando soluciones; ciertamente, si uno sustituye el valor de $x$ por el número 1 la igualdad se satisface.
-Uno puede expresar lo que acaba de ocurrir con nuestro lenguaje: si consideramos el predicado $p(x) \equiv\footnote{No podemos usar aquí el símbolo de igualdad para definir a $p(x)$ porque se puede confundir como parte de una ecuación, así que nos conviene en este caso usar una triple horizontal $\equiv$ para distinguirlo de la igualdad $=$.} x^2 -4x + 3 = 0$ podremos darnos cuenta que $p(1)$ es verdadero por la sustitución que hicimos anteriormente.
+Uno puede expresar lo que acaba de ocurrir con nuestro lenguaje: si consideramos el predicado $p(x) \equiv\footnote{No podemos usar aquí el símbolo de igualdad para definir a $p(x)$ porque se puede confundir como parte de una ecuación, así que nos conviene en este caso usar una triple horizontal $\equiv$ para distinguirlo de la igualdad $=$.}%Este footnote debe aparecer en la primera vez que hagamos esto.
+x^2 -4x + 3 = 0$ podremos darnos cuenta que $p(1)$ es verdadero por la sustitución que hicimos anteriormente.
 % TODO: comprar con otro ejemplo sin soluciones (tal vez debería hacer este ejemplo primero, como ejemplo de un universal)
 
-Ahora, por supuesto que una oración puede tener más de un cuantificador, expresiones como $\exists x \exists y\, x^2 = y + 1$ tienen sentido en la lógica, ésta en particular es verdadera porque $1^2 = 0 + 1$ (tomando $x=1$ y $y=0$). Exploremos algunos ejemplos.
+\subsubsection{Cuantificadores iterados}
+
+Los cuantificadores nos abrieron la puerta para expresar ideas más complejas que las que nos ofrecen los enunciados de primer orden, lo cierto es que un sólo cuantificador es muy poco (por no mencionar que algebraicamente es un horror) por lo que abrimos la posibilidad de iterar múltiples cuantificadores.
 
 \begin{ejm}
 	Considere el enunciado abierto $p(x,y)\equiv x^2=y$.
 	
-	Dejando a $x$ correr libre, y cuantificando $y$ con una existencial tenemos el enunciado abierto $\exists y\, x^2=y$, que para cada $x=x_0$ particular se convierte en $\exists y\, x_0^2=y$ que se podría decir en lenguaje coloquial ``$x_0$ tiene un cuadrado" (¿Puede el lector explicar por qué?) el cual es verdadero para cualquier $y$.
+	Dejando a $x$ correr libre, y cuantificando $y$ con una existencial tenemos el enunciado abierto $\exists y\, x^2=y$, que para cada $x=x_0$ particular se convierte en $\exists y\, x_0^2=y$ que se podría decir en lenguaje coloquial ``$x_0$ tiene un cuadrado" el cual es verdadero para cualquier $y$ (¿Puede el lector explicar por qué?).
 	Hemos, por lo tanto, concluido que $\forall x \exists y \, x^2=y$.
-
+	
 	Por otro lado, si consideramos el enunciado abierto $\forall y\, x^2=y$ en el que si fijamos $x=x_0$ se convierte en la oración $\forall y\, x_0^2=y$; esto es, el cuadrado de este $x_0$ es igual a cualquier número. ¡ABSURDO! ¡No puede ser que un número sea igual a cualquier otro, esto implicaría que no hay más de un número! ciertamente la oración es falsa sin importar el valor de $x_0$ y concluimos que $\forall x \exists y\, x^2=y$ tiene un valor de verdad falso.
 \end{ejm}
 
-\subsubsection{Cuantificadores iterados}
-Los cuantificadores nos abrieron la puerta para expresar ideas más complejas que las que nos ofrecen los enunciados de primer orden, lo cierto es que un sólo cuantificador es muy poco (por no mencionar que algebraicamente es un horror) por lo que abrimos la posibilidad de iterar múltiples cuantificadores.
-Estudiaremos cómo interactúan los cuantificadores en un mismo enunciado, y postularemos equivalencias e inferencias sobre ellos
+Estudiaremos cómo interactúan los cuantificadores en un mismo enunciado, y postularemos equivalencias e inferencias sobre ellos.
 
 \begin{ejm}\label{ej_relaciónPadre}
 	Considere un universo $\Omega$ formada por todas las personas habidas y por haber. Uno puede crear los predicados de relaciones sociales a partir de relaciones sencillas:
@@ -892,9 +920,6 @@ Hay dos formas\footnote{En realidad sólo basta con predicados, la exhaustiva es
 	\item Uno puede definir $A$ de manera exhaustiva como $A=\set{0,1,2,3}$; incluso, se suele hacer un poco de trampa y definir conjuntos de manera exhaustiva estableciendo un patrón:
 	\[\mathbb{N} = \set{0,1,2,3,\ldots}\]
 	$\mathbb{N}$ es el conjunto de todos los números naturales, o números enteros no negativos.
-	
-	Obsérvese que el conjunto $A$ se puede escribir como el conjunto de todos los números naturales no mayores que 3.
-	\[A = \set{x : x \in \mathbb{N} \wedge x \leq 3},\]
 	
 	\item Considere el conjunto $A=\set{x : 0\leq x < 5}$, todos los objetos entre 0 y 5, inclusive-exclusive. El conjunto $A$ está escrito de una manera ambigua o indefinida, según cómo lo piense el lector: estamos definiendo a $A$ en términos de un símbolo de comparación $\leq$ o $<$, pero no tenemos forma, o no hemos definido este objeto en tan generalidad. Probablemente sea necesario delimitar el universo para que esto tenga sentido. 
 	Si pensamos únicamente en números naturales (y así $\leq$ es el orden usual en ellos) obtenemos el conjunto
