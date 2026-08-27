@@ -799,6 +799,12 @@ Más adelante daremos una definición más satisfactoria, por ahora quedémonos 
 	carece de significado.
 \end{ejm}
 
+\begin{ejm}
+	Si $p$ es un enunciado, se sigue de la definición que $p$ también es un enunciado abierto, ya que no hay variables libres las cuales sustituir.
+	
+	A lo largo de estas notas vamos referirnos como enunciados abiertos a los enunciados propiamente abiertos, o sea aquellos enunciados que ciertamente tienen variables libres; al menos que se haga explícito lo contrario.
+\end{ejm}
+
 % TODO: ejemplos fuera de matemáticas, y de evaluar proyecciones de abiertos.
 Nos serán de utilidad los enunciados con exactamente una variable libre.
 \begin{df}
@@ -1020,7 +1026,8 @@ Es común que los conjuntos aparezcan como elementos de otros conjuntos, como su
 De donde se enriquecen las matemáticas no es de los objetos de estudios en sí, sino de la forma en la que interactúan entre sí, su combinatoria.
 Exploraremos esto en las siguientes secciones.
 \section{Subconjuntos}
-% TODO algún texto de apertura y motivación
+En algunos casos se puede notar que de manera canónica, un conjunto es más pequeño que otro como por ejemplo $\set{0}$ es más pequeño que $\set{0,1}$ y este último más pequeño que $\set{0,1,2}$, pero por otro lado $\set{0}$ no es más pequeño, en este sentido que $\set{1,2}$ ya que, a pesar de que el primero tenga menos elementos que el segundo, $0$ no forma parte de $\set{1,2}$.
+Formalicemos esta noción de \emph{ser más pequeño} en la siguiente definición.
 \begin{df}
 	Si $A,B$ son conjuntos. Diremos que $A$ es un subconjunto de $B$ ($A\subseteq B$) si todo elemento de $A$ es también un elemento de $B$; o de manera simbólica, si
 	\[\forall x\, x\in A \implies x \in B \]
